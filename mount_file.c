@@ -18,6 +18,7 @@
 
 #include <nkctx.h>
 #include <loopback.h>
+#include <lang.h>
 
 #include <grub/types.h>
 #include <grub/misc.h>
@@ -96,11 +97,11 @@ nkctx_mount_window(struct nk_context* ctx, float width, float height)
 	nk_layout_row_dynamic(ctx, 0, 1);
 	nk_label(ctx, m_ctx.path, NK_TEXT_LEFT);
 
-	nk_checkbox_label(ctx, "No decompress", &m_ctx.decompress);
+	nk_checkbox_label(ctx, GET_STR(LANG_STR_NO_DECOMP), &m_ctx.decompress);
 
 	nk_edit_string_zero_terminated(ctx, NK_EDIT_FIELD, m_ctx.name, MAX_LOOPBACK_NAME, name_filter);
 
-	if (nk_button_label(ctx, "Mount") && m_ctx.name[0])
+	if (nk_button_label(ctx, GET_STR(LANG_STR_MOUNT)) && m_ctx.name[0])
 		mount_file();
 
 out:

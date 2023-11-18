@@ -18,6 +18,7 @@
 
 #include <nkctx.h>
 #include <nuklear_gdip.h>
+#include <lang.h>
 
 #include <grub/types.h>
 #include <grub/misc.h>
@@ -39,22 +40,22 @@ void
 nkctx_image_init(const char* path)
 {
 	void* data = NULL;
-	grub_file_t file = grub_file_open(path, GRUB_FILE_TYPE_THEME);
+	grub_file_t file = grub_file_open(path, GRUB_FILE_TYPE_THEME | GRUB_FILE_TYPE_NO_DECOMPRESS);
 	if (!file)
 	{
-		MessageBoxW(nk.wnd, L"CANNOT OPEN FILE", L"ERROR", MB_OK | MB_ICONERROR);
+		MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_CANNOT_OPEN_FILE), GET_WCS(LANG_WCS_ERROR), MB_OK | MB_ICONERROR);
 		goto fail;
 	}
 	m_ctx.size = grub_file_size(file);
 	if (m_ctx.size > IMG_MAX_SIZE)
 	{
-		MessageBoxW(nk.wnd, L"FILE TOO LARGE", L"ERROR", MB_OK | MB_ICONERROR);
+		MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_FILE_TOO_LARGE), GET_WCS(LANG_WCS_ERROR), MB_OK | MB_ICONERROR);
 		goto fail;
 	}
 	data = grub_malloc(m_ctx.size);
 	if (!data)
 	{
-		MessageBoxW(nk.wnd, L"OUT OF MEMORY", L"ERROR", MB_OK | MB_ICONERROR);
+		MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_OUT_OF_MEM), GET_WCS(LANG_WCS_ERROR), MB_OK | MB_ICONERROR);
 		goto fail;
 	}
 	grub_file_read(file, data, m_ctx.size);

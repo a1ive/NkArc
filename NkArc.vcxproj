@@ -339,6 +339,7 @@
     <ClCompile Include="hash_file.c" />
     <ClCompile Include="hex_view.c" />
     <ClCompile Include="img_view.c" />
+    <ClCompile Include="lang.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="mount_file.c" />
     <ClCompile Include="nkctx.c" />
@@ -467,6 +468,7 @@
     <ClInclude Include="include\grub\zfs\zil.h" />
     <ClInclude Include="include\grub\zfs\zio.h" />
     <ClInclude Include="include\grub\zfs\zio_checksum.h" />
+    <ClInclude Include="include\lang.h" />
     <ClInclude Include="include\loopback.h" />
     <ClInclude Include="include\nkctx.h" />
     <ClInclude Include="include\nuklear.h" />

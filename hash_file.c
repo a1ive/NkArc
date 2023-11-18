@@ -17,6 +17,7 @@
  */
 
 #include <nkctx.h>
+#include <lang.h>
 
 #include <grub/types.h>
 #include <grub/err.h>
@@ -134,7 +135,7 @@ draw_hash(struct nk_context* ctx, const char* desc, const char* name, grub_size_
 	{
 		nk_layout_row(ctx, NK_DYNAMIC, 0, 2, (float[2]) { 0.3f, 0.4f });
 		nk_spacer(ctx);
-		if (nk_button_label(ctx, "CALC"))
+		if (nk_button_label(ctx, GET_STR(LANG_STR_CALC)))
 			m_ctx[id] = get_checksum(name, m_ctx[M_CTX_PATH]);
 	}
 	else

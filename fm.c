@@ -18,6 +18,7 @@
 
 #include <nkctx.h>
 #include <loopback.h>
+#include <lang.h>
 
 #include <grub/misc.h>
 #include <grub/mm.h>
@@ -76,7 +77,7 @@ draw_disk_menu(struct nk_context* ctx, struct nkctx_disk* info, struct nk_rect b
 
 	if (info->is_loopback)
 	{
-		if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_RM), "Unmount Disk", NULL))
+		if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_RM), GET_STR(LANG_STR_UMOUNT_DISK), NULL))
 		{
 			grub_loopback_delete(info->name);
 			nkctx_free_file();
@@ -86,13 +87,13 @@ draw_disk_menu(struct nk_context* ctx, struct nkctx_disk* info, struct nk_rect b
 		}
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_EMPTY), "Disk Info", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_EMPTY), GET_STR(LANG_STR_DISK_INFO), NULL))
 	{
 		nkctx_disk_info_init(info->name);
 		nk_contextual_close(ctx);
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_ERROR), "Cancel", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_ERROR), GET_STR(LANG_STR_CANCEL), NULL))
 		nk_contextual_close(ctx);
 	nk_contextual_end(ctx);
 }
@@ -125,7 +126,7 @@ draw_pc_menu(struct nk_context* ctx, struct nk_rect bounds)
 
 	nk_layout_row_dynamic(ctx, 0, 1);
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_REFRESH), "Refresh Disks", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_DISKS), NULL))
 	{
 		nkctx_free_file();
 		nk.disk_index = 0;
@@ -134,7 +135,7 @@ draw_pc_menu(struct nk_context* ctx, struct nk_rect bounds)
 		nk_contextual_close(ctx);
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_ERROR), "Cancel", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_ERROR), GET_STR(LANG_STR_CANCEL), NULL))
 		nk_contextual_close(ctx);
 	nk_contextual_end(ctx);
 }
@@ -148,7 +149,7 @@ draw_pc_button(struct nk_context* ctx)
 		nk.style_button.normal = nk_style_item_color(nk.table[NK_COLOR_WINDOW]);
 	nk_layout_row_dynamic(ctx, 0, 1);
 	struct nk_rect bounds = nk_widget_bounds(ctx);
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_PC), "[COMPUTER]", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_PC), GET_STR(LANG_STR_THIS_PC), NULL))
 	{
 		nkctx_free_file();
 		nk.disk_index = 0;
@@ -169,40 +170,40 @@ draw_file_menu(struct nk_context* ctx, struct nkctx_file* info, struct nk_rect b
 
 	if (info->type == NKCTX_FILE_IMAGE)
 	{
-		if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_IMAGE), "View Image", NULL))
+		if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_IMAGE), GET_STR(LANG_STR_VIEW_IMAGE), NULL))
 		{
 			nkctx_image_init(info->path);
 			nk_contextual_close(ctx);
 		}
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_RM), "Mount Disk", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_RM), GET_STR(LANG_STR_MOUNT_DISK), NULL))
 	{
 		nkctx_mount_init(info->path);
 		nk_contextual_close(ctx);
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_OK), "Get Checksum", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_OK), GET_STR(LANG_STR_GET_CHECKSUM), NULL))
 	{
 		nkctx_hash_init(info->path);
 		nk_contextual_close(ctx);
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_COPY), "Extract File", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_COPY), GET_STR(LANG_STR_EXTRACT_FILE), NULL))
 	{
 		WCHAR* dir = nkctx_select_dir();
 		if (dir)
 		{
 			if (nkctx_extract_file(dir, info->path))
-				MessageBoxW(nk.wnd, L"DONE", L"INFO", MB_OK);
+				MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_DONE), GET_WCS(LANG_WCS_INFO), MB_OK);
 			else
-				MessageBoxW(nk.wnd, dir, L"FAIL", MB_OK | MB_ICONERROR);
+				MessageBoxW(nk.wnd, dir, GET_WCS(LANG_WCS_FAIL), MB_OK | MB_ICONERROR);
 			free(dir);
 		}
 		nk_contextual_close(ctx);
 	}
 	
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_ERROR), "Cancel", NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_ERROR), GET_STR(LANG_STR_CANCEL), NULL))
 		nk_contextual_close(ctx);
 	nk_contextual_end(ctx);
 }
@@ -255,13 +256,13 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	nk.gui_ratio = rect.h / rect.w;
 
 	nk_layout_row_push(ctx, nk.gui_ratio);
-	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_UP), "Up"))
+	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_UP), GET_STR(LANG_STR_UP)))
 		go_up();
 	nk_layout_row_push(ctx, nk.gui_ratio);
-	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), "Refresh Files"))
+	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_FILES)))
 		nkctx_enum_file(nk.path);
 	nk_layout_row_push(ctx, 1.0f - 2 * nk.gui_ratio);
-	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : "[COMPUTER]", NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
+	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : GET_STR(LANG_STR_THIS_PC), NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
 	nk_layout_row_end(ctx);
 
 	total_space = nk_window_get_content_region(ctx);

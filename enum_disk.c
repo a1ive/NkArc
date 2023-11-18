@@ -22,6 +22,7 @@
 #include <grub/fs.h>
 
 #include <nkctx.h>
+#include <lang.h>
 
 static int
 callback_enum_disk(const char* name, void* data)
@@ -57,7 +58,7 @@ callback_enum_disk(const char* name, void* data)
 
 	info->size = grub_disk_native_sectors(disk);
 	if (info->size == GRUB_DISK_SIZE_UNKNOWN)
-		strcpy_s(info->desc, ARRAY_SIZE(info->desc), "UNKNOWN");
+		strcpy_s(info->desc, ARRAY_SIZE(info->desc), GET_STR(LANG_STR_UNKNOWN));
 	else
 		strcpy_s(info->desc, ARRAY_SIZE(info->desc),
 			grub_get_human_size(info->size << GRUB_DISK_SECTOR_BITS, GRUB_HUMAN_SIZE_SHORT));

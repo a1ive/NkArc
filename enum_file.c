@@ -24,6 +24,7 @@
 
 #include <nkctx.h>
 #include <stdlib.h>
+#include <lang.h>
 
 static bool
 is_hidden(const char* filename)
@@ -133,7 +134,7 @@ callback_enum_file(const char* filename,
 		p->is_dir = TRUE;
 		p->icon = IDR_PNG_DIR;
 		p->path = grub_xasprintf("%s%s/", nk.path, filename);
-		strcpy_s(p->desc, ARRAY_SIZE(p->desc), "DIR");
+		strcpy_s(p->desc, ARRAY_SIZE(p->desc), GET_STR(LANG_STR_DIR));
 	}
 	else
 	{
@@ -148,7 +149,7 @@ callback_enum_file(const char* filename,
 			grub_file_close(file);
 		}
 		else
-			strcpy_s(p->desc, ARRAY_SIZE(p->desc), "UNKNOWN");
+			strcpy_s(p->desc, ARRAY_SIZE(p->desc), GET_STR(LANG_STR_UNKNOWN));
 	}
 	if (info->symlink)
 		p->icon = IDR_PNG_LINK;

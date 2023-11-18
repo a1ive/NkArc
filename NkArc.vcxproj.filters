@@ -465,6 +465,9 @@
     <ClCompile Include="grub\io\lz4io.c">
       <Filter>src\grub\io</Filter>
     </ClCompile>
+    <ClCompile Include="lang.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -834,6 +837,9 @@
     </ClInclude>
     <ClInclude Include="grub\lib\vbox\vbox.h">
       <Filter>src\grub\lib\vbox</Filter>
+    </ClInclude>
+    <ClInclude Include="include\lang.h">
+      <Filter>include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

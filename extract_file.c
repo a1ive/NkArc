@@ -17,7 +17,7 @@
  */
 
 #include <nkctx.h>
-
+#include <lang.h>
 #include <shlobj.h>
 #include <shlobj_core.h>
 
@@ -99,7 +99,7 @@ nkctx_select_dir(void)
 
 	bi.hwndOwner = nk.wnd;
 	bi.pszDisplayName = m_u16_buf;
-	bi.lpszTitle = L"Select target folder";
+	bi.lpszTitle = GET_WCS(LANG_WCS_SELECT_DIR);
 	bi.ulFlags = BIF_RETURNONLYFSDIRS | BIF_DONTGOBELOWDOMAIN | BIF_EDITBOX | BIF_NEWDIALOGSTYLE;
 
 	pidl = SHBrowseForFolderW(&bi);

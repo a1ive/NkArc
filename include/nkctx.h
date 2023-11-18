@@ -117,6 +117,7 @@ typedef struct _NK_GUI_CTX
 	unsigned width;
 	unsigned height;
 	BYTE alpha;
+	LANGID lang;
 	unsigned font_size;
 	float title_height;
 	float gui_ratio;

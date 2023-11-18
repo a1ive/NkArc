@@ -206,6 +206,7 @@ nkctx_init(HINSTANCE inst,
 	nk.height = height;
 	nk.alpha = 255;
 	nk.font_size = font_size;
+	nk.lang = GetUserDefaultUILanguage();
 
 	nk.copy_size = COPY_SIZE;
 	nk.copy_buf = grub_malloc(nk.copy_size);

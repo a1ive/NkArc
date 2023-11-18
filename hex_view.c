@@ -23,6 +23,8 @@
 #include <grub/mm.h>
 #include <grub/file.h>
 
+#include <lang.h>
+
 #define HEX_VIEW_STEP 0x100
 
 static struct
@@ -39,7 +41,7 @@ nkctx_hex_init(const char* path)
 	m_ctx.file = grub_file_open(path, GRUB_FILE_TYPE_HEXCAT | GRUB_FILE_TYPE_NO_DECOMPRESS);
 	if (!m_ctx.file)
 	{
-		MessageBoxW(nk.wnd, L"CANNOT OPEN FILE", L"ERROR", MB_OK | MB_ICONERROR);
+		MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_CANNOT_OPEN_FILE), GET_WCS(LANG_WCS_ERROR), MB_OK | MB_ICONERROR);
 		return;
 	}
 	m_ctx.offset = 0;
