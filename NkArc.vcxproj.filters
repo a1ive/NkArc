@@ -492,6 +492,9 @@
     <ClCompile Include="grub\lib\zstd\decompress\zstd_decompress_block.c">
       <Filter>src\grub\lib\zstd</Filter>
     </ClCompile>
+    <ClCompile Include="grub\fs\zfs\zfs_zstd.c">
+      <Filter>src\grub\fs\zfs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">

@@ -153,12 +153,14 @@ ZAP_LEAF_ENTRY(zap_leaf_phys_t* l, int bs, int idx)
 }
 
 /*
- * Decompression Entry - lzjb & lz4
+ * Decompression Entry - lzjb, lz4 & zstd
  */
 
 extern grub_err_t lzjb_decompress(void*, void*, grub_size_t, grub_size_t);
 
 extern grub_err_t lz4_decompress(void*, void*, grub_size_t, grub_size_t);
+
+extern grub_err_t zstd_decompress(void*, void*, grub_size_t, grub_size_t);
 
 typedef grub_err_t zfs_decomp_func_t(void* s_start, void* d_start,
 	grub_size_t s_len, grub_size_t d_len);
@@ -280,12 +282,13 @@ grub_crypto_cipher_handle_t(*grub_zfs_load_key) (const struct grub_zfs_key* key,
 #define MAX_SUPPORTED_FEATURE_STRLEN 50
 static const char* spa_feature_names[] =
 {
-  "org.illumos:lz4_compress",
-  "com.delphix:hole_birth",
-  "com.delphix:embedded_data",
-  "com.delphix:extensible_dataset",
-  "org.open-zfs:large_blocks",
-  NULL
+	"org.illumos:lz4_compress",
+	"com.delphix:hole_birth",
+	"com.delphix:embedded_data",
+	"com.delphix:extensible_dataset",
+	"org.open-zfs:large_blocks",
+	"org.freebsd:zstd_compress",
+	NULL
 };
 
 static int
@@ -341,22 +344,23 @@ zle_decompress(void* s, void* d,
 
 static decomp_entry_t decomp_table[ZIO_COMPRESS_FUNCTIONS] =
 {
-  {"inherit", NULL},		/* ZIO_COMPRESS_INHERIT */
-  {"on", lzjb_decompress},	/* ZIO_COMPRESS_ON */
-  {"off", NULL},		/* ZIO_COMPRESS_OFF */
-  {"lzjb", lzjb_decompress},	/* ZIO_COMPRESS_LZJB */
-  {"empty", NULL},		/* ZIO_COMPRESS_EMPTY */
-  {"gzip-1", zlib_decompress},  /* ZIO_COMPRESS_GZIP1 */
-  {"gzip-2", zlib_decompress},  /* ZIO_COMPRESS_GZIP2 */
-  {"gzip-3", zlib_decompress},  /* ZIO_COMPRESS_GZIP3 */
-  {"gzip-4", zlib_decompress},  /* ZIO_COMPRESS_GZIP4 */
-  {"gzip-5", zlib_decompress},  /* ZIO_COMPRESS_GZIP5 */
-  {"gzip-6", zlib_decompress},  /* ZIO_COMPRESS_GZIP6 */
-  {"gzip-7", zlib_decompress},  /* ZIO_COMPRESS_GZIP7 */
-  {"gzip-8", zlib_decompress},  /* ZIO_COMPRESS_GZIP8 */
-  {"gzip-9", zlib_decompress},  /* ZIO_COMPRESS_GZIP9 */
-  {"zle", zle_decompress},      /* ZIO_COMPRESS_ZLE   */
-  {"lz4", lz4_decompress},      /* ZIO_COMPRESS_LZ4   */
+	{"inherit", NULL},		/* ZIO_COMPRESS_INHERIT */
+	{"on", lzjb_decompress},	/* ZIO_COMPRESS_ON */
+	{"off", NULL},		/* ZIO_COMPRESS_OFF */
+	{"lzjb", lzjb_decompress},	/* ZIO_COMPRESS_LZJB */
+	{"empty", NULL},		/* ZIO_COMPRESS_EMPTY */
+	{"gzip-1", zlib_decompress},  /* ZIO_COMPRESS_GZIP1 */
+	{"gzip-2", zlib_decompress},  /* ZIO_COMPRESS_GZIP2 */
+	{"gzip-3", zlib_decompress},  /* ZIO_COMPRESS_GZIP3 */
+	{"gzip-4", zlib_decompress},  /* ZIO_COMPRESS_GZIP4 */
+	{"gzip-5", zlib_decompress},  /* ZIO_COMPRESS_GZIP5 */
+	{"gzip-6", zlib_decompress},  /* ZIO_COMPRESS_GZIP6 */
+	{"gzip-7", zlib_decompress},  /* ZIO_COMPRESS_GZIP7 */
+	{"gzip-8", zlib_decompress},  /* ZIO_COMPRESS_GZIP8 */
+	{"gzip-9", zlib_decompress},  /* ZIO_COMPRESS_GZIP9 */
+	{"zle", zle_decompress},      /* ZIO_COMPRESS_ZLE   */
+	{"lz4", lz4_decompress},      /* ZIO_COMPRESS_LZ4   */
+	{"zstd", zstd_decompress},      /* ZIO_COMPRESS_LZ4   */
 };
 
 static grub_err_t zio_read_data(blkptr_t* bp, grub_zfs_endian_t endian,
