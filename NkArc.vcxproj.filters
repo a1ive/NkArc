@@ -285,30 +285,6 @@
     <ClCompile Include="grub\io\xzio.c">
       <Filter>src\grub\io</Filter>
     </ClCompile>
-    <ClCompile Include="grub\lib\zstd\debug.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\entropy_common.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\error_private.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\fse_decompress.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\huf_decompress.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\xxhash.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\zstd_common.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\zstd\zstd_decompress.c">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClCompile>
     <ClCompile Include="grub\io\zstd.c">
       <Filter>src\grub\io</Filter>
     </ClCompile>
@@ -483,6 +459,39 @@
     <ClCompile Include="grub\fs\wim.c">
       <Filter>src\grub\fs</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\debug.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\entropy_common.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\error_private.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\fse_decompress.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\pool.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\xxhash.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\common\zstd_common.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\decompress\huf_decompress.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\decompress\zstd_ddict.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\decompress\zstd_decompress.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\zstd\decompress\zstd_decompress_block.c">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -593,6 +602,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="README.md" />
+    <None Include="grub\lib\zstd\decompress\huf_decompress_amd64.S">
+      <Filter>src\grub\lib\zstd</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\nkctx.h">
@@ -739,42 +751,6 @@
     <ClInclude Include="grub\lib\xzembed\xz_stream.h">
       <Filter>src\grub\lib\xzembed</Filter>
     </ClInclude>
-    <ClInclude Include="grub\lib\zstd\bitstream.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\compiler.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\cpu.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\debug.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\error_private.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\fse.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\huf.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\mem.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\xxhash.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\zstd.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\zstd_errors.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\zstd\zstd_internal.h">
-      <Filter>src\grub\lib\zstd</Filter>
-    </ClInclude>
     <ClInclude Include="include\grub\btrfs.h">
       <Filter>include\grub</Filter>
     </ClInclude>
@@ -858,6 +834,72 @@
     </ClInclude>
     <ClInclude Include="grub\lib\mscompress\mscompress.h">
       <Filter>src\grub\lib\mscompress</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\zdict.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\zstd.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\zstd_errors.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\allocations.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\bits.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\bitstream.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\compiler.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\cpu.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\debug.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\error_private.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\fse.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\huf.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\mem.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\pool.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\portability_macros.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\xxhash.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\zstd_deps.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\zstd_internal.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\common\zstd_trace.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\decompress\zstd_ddict.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\decompress\zstd_decompress_block.h">
+      <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\zstd\decompress\zstd_decompress_internal.h">
+      <Filter>src\grub\lib\zstd</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
