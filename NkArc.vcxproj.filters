@@ -70,6 +70,9 @@
     <Filter Include="src\grub\lib\vbox">
       <UniqueIdentifier>{7af9ba94-be77-49b0-8469-ba7762266f5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\mscompress">
+      <UniqueIdentifier>{75ab00ce-00c8-48a2-8beb-f84331271edc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -468,6 +471,18 @@
     <ClCompile Include="lang.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\mscompress\huffman.c">
+      <Filter>src\grub\lib\mscompress</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\mscompress\lzx.c">
+      <Filter>src\grub\lib\mscompress</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\mscompress\xpress.c">
+      <Filter>src\grub\lib\mscompress</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\fs\wim.c">
+      <Filter>src\grub\fs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -840,6 +855,9 @@
     </ClInclude>
     <ClInclude Include="include\lang.h">
       <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\mscompress\mscompress.h">
+      <Filter>src\grub\lib\mscompress</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

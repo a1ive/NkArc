@@ -272,6 +272,7 @@
     <ClCompile Include="grub\fs\ufs.c" />
     <ClCompile Include="grub\fs\ufs2.c" />
     <ClCompile Include="grub\fs\ufs_be.c" />
+    <ClCompile Include="grub\fs\wim.c" />
     <ClCompile Include="grub\fs\xfs.c" />
     <ClCompile Include="grub\fs\zfs\zfs.c" />
     <ClCompile Include="grub\fs\zfs\zfs_fletcher.c" />
@@ -312,6 +313,9 @@
     <ClCompile Include="grub\lib\LzmaDec.c" />
     <ClCompile Include="grub\lib\minilzo\minilzo.c" />
     <ClCompile Include="grub\lib\miniz\miniz.c" />
+    <ClCompile Include="grub\lib\mscompress\huffman.c" />
+    <ClCompile Include="grub\lib\mscompress\lzx.c" />
+    <ClCompile Include="grub\lib\mscompress\xpress.c" />
     <ClCompile Include="grub\lib\progress.c" />
     <ClCompile Include="grub\lib\vbox\vbox.c" />
     <ClCompile Include="grub\lib\xzembed\xz_dec_bcj.c" />
@@ -394,6 +398,7 @@
     <ClInclude Include="grub\lib\minilzo\lzodefs.h" />
     <ClInclude Include="grub\lib\minilzo\minilzo.h" />
     <ClInclude Include="grub\lib\miniz\miniz.h" />
+    <ClInclude Include="grub\lib\mscompress\mscompress.h" />
     <ClInclude Include="grub\lib\vbox\vbox.h" />
     <ClInclude Include="grub\lib\xzembed\xz.h" />
     <ClInclude Include="grub\lib\xzembed\xz_config.h" />
