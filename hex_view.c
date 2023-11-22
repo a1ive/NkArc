@@ -35,7 +35,7 @@ static struct
 	grub_uint8_t buf[HEX_VIEW_STEP];
 } m_ctx;
 
-void
+static void
 nkctx_hex_init(const char* path)
 {
 	m_ctx.file = grub_file_open(path, GRUB_FILE_TYPE_HEXCAT | GRUB_FILE_TYPE_NO_DECOMPRESS);
@@ -50,7 +50,7 @@ nkctx_hex_init(const char* path)
 	grub_file_read(m_ctx.file, m_ctx.buf, HEX_VIEW_STEP);
 }
 
-void
+static void
 nkctx_hex_fini(void)
 {
 	grub_file_close(m_ctx.file);
@@ -93,7 +93,7 @@ draw_row(struct nk_context* ctx, grub_off_t base)
 	nk_label(ctx, buf, NK_TEXT_LEFT);
 }
 
-void
+static void
 nkctx_hex_window(struct nk_context* ctx, float width, float height)
 {
 	if (!m_ctx.file)
@@ -123,3 +123,10 @@ nkctx_hex_window(struct nk_context* ctx, float width, float height)
 out:
 	nk_end(ctx);
 }
+
+struct nkctx_window nkctx_hex =
+{
+	.init = nkctx_hex_init,
+	.fini = nkctx_hex_fini,
+	.window = nkctx_hex_window,
+};

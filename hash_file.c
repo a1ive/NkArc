@@ -109,14 +109,14 @@ enum
 
 static char* m_ctx[M_CTX_MAX];
 
-void
+static void
 nkctx_hash_init(const char* path)
 {
 	memset(m_ctx, 0, sizeof(m_ctx));
 	m_ctx[M_CTX_PATH] = grub_strdup(path);
 }
 
-void
+static void
 nkctx_hash_fini(void)
 {
 	for (grub_size_t i = 0; i < ARRAY_SIZE(m_ctx); i++)
@@ -142,7 +142,7 @@ draw_hash(struct nk_context* ctx, const char* desc, const char* name, grub_size_
 		nk_label_wrap(ctx, m_ctx[id]);
 }
 
-void
+static void
 nkctx_hash_window(struct nk_context* ctx, float width, float height)
 {
 	if (!m_ctx[M_CTX_PATH])
@@ -164,3 +164,10 @@ nkctx_hash_window(struct nk_context* ctx, float width, float height)
 out:
 	nk_end(ctx);
 }
+
+struct nkctx_window nkctx_hash =
+{
+	.init = nkctx_hash_init,
+	.fini = nkctx_hash_fini,
+	.window = nkctx_hash_window,
+};

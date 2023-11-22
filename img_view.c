@@ -36,7 +36,7 @@ static struct
 	float ratio;
 } m_ctx;
 
-void
+static void
 nkctx_image_init(const char* path)
 {
 	void* data = NULL;
@@ -99,7 +99,7 @@ fail:
 	return;
 }
 
-void
+static void
 nkctx_image_fini(void)
 {
 	nk_gdip_image_free(m_ctx.img);
@@ -134,7 +134,7 @@ draw_image(struct nk_context* ctx, struct nk_image img, struct nk_color col)
 	nk_draw_image(&win->buffer, image, &img, col);
 }
 
-void
+static void
 nkctx_image_window(struct nk_context* ctx, float width, float height)
 {
 	if (m_ctx.img.w == 0 || m_ctx.img.h == 0)
@@ -154,3 +154,10 @@ nkctx_image_window(struct nk_context* ctx, float width, float height)
 out:
 	nk_end(ctx);
 }
+
+struct nkctx_window nkctx_image =
+{
+	.init = nkctx_image_init,
+	.fini = nkctx_image_fini,
+	.window = nkctx_image_window,
+};

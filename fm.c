@@ -89,7 +89,7 @@ draw_disk_menu(struct nk_context* ctx, struct nkctx_disk* info, struct nk_rect b
 
 	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_EMPTY), GET_STR(LANG_STR_DISK_INFO), NULL))
 	{
-		nkctx_disk_info_init(info->name);
+		nkctx_disk_info.init(info->name);
 		nk_contextual_close(ctx);
 	}
 
@@ -172,20 +172,20 @@ draw_file_menu(struct nk_context* ctx, struct nkctx_file* info, struct nk_rect b
 	{
 		if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_IMAGE), GET_STR(LANG_STR_VIEW_IMAGE), NULL))
 		{
-			nkctx_image_init(info->path);
+			nkctx_image.init(info->path);
 			nk_contextual_close(ctx);
 		}
 	}
 
 	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_RM), GET_STR(LANG_STR_MOUNT_DISK), NULL))
 	{
-		nkctx_mount_init(info->path);
+		nkctx_mount.init(info->path);
 		nk_contextual_close(ctx);
 	}
 
 	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_OK), GET_STR(LANG_STR_GET_CHECKSUM), NULL))
 	{
-		nkctx_hash_init(info->path);
+		nkctx_hash.init(info->path);
 		nk_contextual_close(ctx);
 	}
 
@@ -231,7 +231,7 @@ draw_file_info(struct nk_context* ctx, struct nkctx_file* info)
 		if (info->is_dir)
 			nkctx_enum_file(info->path);
 		else
-			nkctx_hex_init(info->path);
+			nkctx_hex.init(info->path);
 	}
 
 	if (!info->is_dir)

@@ -279,11 +279,11 @@ nkctx_loop(void)
 		/* GUI */
 		//set_style(nk.ctx);
 		nkctx_main_window(nk.ctx, (float)nk.width, (float)nk.height);
-		nkctx_hash_window(nk.ctx, (float)nk.width, (float)nk.height);
-		nkctx_mount_window(nk.ctx, (float)nk.width, (float)nk.height);
-		nkctx_disk_info_window(nk.ctx, (float)nk.width, (float)nk.height);
-		nkctx_hex_window(nk.ctx, (float)nk.width, (float)nk.height);
-		nkctx_image_window(nk.ctx, (float)nk.width, (float)nk.height);
+		nkctx_hash.window(nk.ctx, (float)nk.width, (float)nk.height);
+		nkctx_mount.window(nk.ctx, (float)nk.width, (float)nk.height);
+		nkctx_disk_info.window(nk.ctx, (float)nk.width, (float)nk.height);
+		nkctx_hex.window(nk.ctx, (float)nk.width, (float)nk.height);
+		nkctx_image.window(nk.ctx, (float)nk.width, (float)nk.height);
 
 		/* Draw */
 		nk_gdip_render(NK_ANTI_ALIASING_ON, nk.table[NK_COLOR_WINDOW]);

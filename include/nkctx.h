@@ -177,50 +177,18 @@ nkctx_enum_file(const char* dir);
 void
 nkctx_free_file(void);
 
-void
-nkctx_hash_init(const char* path);
+struct nkctx_window
+{
+	void (*init)(const char* path);
+	void (*fini)(void);
+	void (*window)(struct nk_context* ctx, float width, float height);
+};
 
-void
-nkctx_hash_fini(void);
-
-void
-nkctx_hash_window(struct nk_context* ctx, float width, float height);
-
-void
-nkctx_mount_init(const char* path);
-
-void
-nkctx_mount_fini(void);
-
-void
-nkctx_mount_window(struct nk_context* ctx, float width, float height);
-
-void
-nkctx_disk_info_init(const char* name);
-
-void
-nkctx_disk_info_fini(void);
-
-void
-nkctx_disk_info_window(struct nk_context* ctx, float width, float height);
-
-void
-nkctx_hex_init(const char* path);
-
-void
-nkctx_hex_fini(void);
-
-void
-nkctx_hex_window(struct nk_context* ctx, float width, float height);
-
-void
-nkctx_image_init(const char* path);
-
-void
-nkctx_image_fini(void);
-
-void
-nkctx_image_window(struct nk_context* ctx, float width, float height);
+extern struct nkctx_window nkctx_hash;
+extern struct nkctx_window nkctx_mount;
+extern struct nkctx_window nkctx_disk_info;
+extern struct nkctx_window nkctx_hex;
+extern struct nkctx_window nkctx_image;
 
 void
 nkctx_main_window(struct nk_context* ctx, float width, float height);

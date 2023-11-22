@@ -34,7 +34,7 @@ static struct
 	char name[MAX_LOOPBACK_NAME];
 } m_ctx;
 
-void
+static void
 nkctx_mount_init(const char* path)
 {
 	m_ctx.path = grub_strdup(path);
@@ -42,7 +42,7 @@ nkctx_mount_init(const char* path)
 	grub_snprintf(m_ctx.name, MAX_LOOPBACK_NAME, "ld%lu", m_ctx.id);
 }
 
-void
+static void
 nkctx_mount_fini(void)
 {
 	grub_free(m_ctx.path);
@@ -81,7 +81,7 @@ mount_file(void)
 	nkctx_mount_fini();
 }
 
-void
+static void
 nkctx_mount_window(struct nk_context* ctx, float width, float height)
 {
 	if (!m_ctx.path)
@@ -107,3 +107,10 @@ nkctx_mount_window(struct nk_context* ctx, float width, float height)
 out:
 	nk_end(ctx);
 }
+
+struct nkctx_window nkctx_mount =
+{
+	.init = nkctx_mount_init,
+	.fini = nkctx_mount_fini,
+	.window = nkctx_mount_window,
+};

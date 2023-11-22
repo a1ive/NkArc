@@ -52,7 +52,7 @@ get_disk_parent(grub_disk_t disk)
 	return NULL;
 }
 
-void
+static void
 nkctx_disk_info_init(const char* name)
 {
 	grub_memset(&m_ctx, 0, sizeof(m_ctx));
@@ -83,7 +83,7 @@ nkctx_disk_info_init(const char* name)
 	grub_disk_close(disk);
 }
 
-void
+static void
 nkctx_disk_info_fini(void)
 {
 	grub_free(m_ctx.name);
@@ -91,7 +91,7 @@ nkctx_disk_info_fini(void)
 	grub_memset(&m_ctx, 0, sizeof(m_ctx));
 }
 
-void
+static void
 nkctx_disk_info_window(struct nk_context* ctx, float width, float height)
 {
 	if (!m_ctx.name)
@@ -142,3 +142,10 @@ nkctx_disk_info_window(struct nk_context* ctx, float width, float height)
 out:
 	nk_end(ctx);
 }
+
+struct nkctx_window nkctx_disk_info =
+{
+	.init = nkctx_disk_info_init,
+	.fini = nkctx_disk_info_fini,
+	.window = nkctx_disk_info_window,
+};
