@@ -194,10 +194,12 @@ draw_file_menu(struct nk_context* ctx, struct nkctx_file* info, struct nk_rect b
 		WCHAR* dir = nkctx_select_dir();
 		if (dir)
 		{
+			nkctx_show_progress();
 			if (nkctx_extract_file(dir, info->path))
 				MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_DONE), GET_WCS(LANG_WCS_INFO), MB_OK);
 			else
 				MessageBoxW(nk.wnd, dir, GET_WCS(LANG_WCS_FAIL), MB_OK | MB_ICONERROR);
+			nkctx_hide_progress();
 			free(dir);
 		}
 		nk_contextual_close(ctx);
@@ -259,16 +261,18 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	nk_layout_row_push(ctx, 1.0f - 4 * nk.gui_ratio);
 	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : GET_STR(LANG_STR_THIS_PC), NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
 	nk_layout_row_push(ctx, nk.gui_ratio);
-	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_FILES)))
+	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_FILES)) && nk.path)
 		nkctx_enum_file(nk.path);
 	nk_layout_row_push(ctx, nk.gui_ratio);
-	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_COPY), GET_STR(LANG_STR_EXTRACT_DIR)))
+	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_COPY), GET_STR(LANG_STR_EXTRACT_DIR)) && nk.path)
 	{
 		WCHAR* dir = nkctx_select_dir();
 		if (dir)
 		{
+			nkctx_show_progress();
 			nkctx_extract_dir(dir);
 			MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_DONE), GET_WCS(LANG_WCS_INFO), MB_OK);
+			nkctx_hide_progress();
 			free(dir);
 		}
 	}

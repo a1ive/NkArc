@@ -69,7 +69,6 @@ nkctx_extract_file(LPCWSTR target_dir, const char* source_file)
 	if (hf == NULL || hf == INVALID_HANDLE_VALUE)
 		goto fail;
 
-	nkctx_show_progress();
 	while (1)
 	{
 		DWORD w;
@@ -82,7 +81,7 @@ nkctx_extract_file(LPCWSTR target_dir, const char* source_file)
 		if (!b || w != (DWORD)r)
 			goto fail;
 	}
-	nkctx_hide_progress();
+
 	ret = TRUE;
 
 fail:
