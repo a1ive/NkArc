@@ -23,6 +23,7 @@ static const char* lang_en_us[LANG_STRMAX] =
 {
 	u8"Up",
 	u8"Refresh Files",
+	u8"About",
 	u8"[COMPUTER]",
 	u8"Unmount Disk",
 	u8"Disk Info",
@@ -62,6 +63,7 @@ static const char* lang_zh_cn[LANG_STRMAX] =
 {
 	u8"向上",
 	u8"刷新文件",
+	u8"关于",
 	u8"[计算机]",
 	u8"卸载磁盘",
 	u8"磁盘信息",
@@ -101,6 +103,7 @@ static const char* lang_zh_tw[LANG_STRMAX] =
 {
 	u8"向上",
 	u8"重新整理檔案",
+	u8"關於",
 	u8"[計算機]",
 	u8"解除安裝磁碟",
 	u8"磁碟資訊",

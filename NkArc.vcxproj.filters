@@ -498,6 +498,9 @@
     <ClCompile Include="grub\lib\datetime.c">
       <Filter>src\grub\lib</Filter>
     </ClCompile>
+    <ClCompile Include="about.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -602,6 +605,9 @@
       <Filter>资源文件\icons</Filter>
     </Image>
     <Image Include="icons\server.png">
+      <Filter>资源文件\icons</Filter>
+    </Image>
+    <Image Include="icons\info.png">
       <Filter>资源文件\icons</Filter>
     </Image>
   </ItemGroup>

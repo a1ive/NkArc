@@ -194,6 +194,9 @@ extern struct nkctx_window nkctx_image;
 void
 nkctx_main_window(struct nk_context* ctx, float width, float height);
 
+BOOL
+nkctx_about_popup(struct nk_context* ctx, float width, float height);
+
 void
 nkctx_show_progress(void);
 

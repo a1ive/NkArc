@@ -87,7 +87,7 @@ draw_disk_menu(struct nk_context* ctx, struct nkctx_disk* info, struct nk_rect b
 		}
 	}
 
-	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_EMPTY), GET_STR(LANG_STR_DISK_INFO), NULL))
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_INFO), GET_STR(LANG_STR_DISK_INFO), NULL))
 	{
 		nkctx_disk_info.init(info->name);
 		nk_contextual_close(ctx);
@@ -244,6 +244,7 @@ draw_file_info(struct nk_context* ctx, struct nkctx_file* info)
 void
 nkctx_main_window(struct nk_context* ctx, float width, float height)
 {
+	static BOOL show_about = 0;
 	struct nk_rect total_space;
 
 	if (!nk_begin(ctx, MAIN_WINDOW_NAME, nk_rect(0.0f, 0.0f, width, height),
@@ -251,7 +252,7 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	{
 		nkctx_fini(0);
 	}
-	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 3);
+	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 4);
 
 	struct nk_rect rect = nk_layout_widget_bounds(ctx);
 	nk.gui_ratio = rect.h / rect.w;
@@ -259,11 +260,13 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_UP), GET_STR(LANG_STR_UP)))
 		go_up();
+	nk_layout_row_push(ctx, 1.0f - 3 * nk.gui_ratio);
+	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : GET_STR(LANG_STR_THIS_PC), NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_FILES)))
 		nkctx_enum_file(nk.path);
-	nk_layout_row_push(ctx, 1.0f - 2 * nk.gui_ratio);
-	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : GET_STR(LANG_STR_THIS_PC), NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
+	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_INFO), GET_STR(LANG_STR_ABOUT)))
+		show_about = TRUE;
 	nk_layout_row_end(ctx);
 
 	total_space = nk_window_get_content_region(ctx);
@@ -287,6 +290,11 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 
 	nk_layout_row_dynamic(ctx, 0, 1);
 	nk_label(ctx, nk.status, NK_TEXT_LEFT);
+
+	if (show_about)
+	{
+		show_about = nkctx_about_popup(ctx, width, height);
+	}
 
 	nk_end(ctx);
 }

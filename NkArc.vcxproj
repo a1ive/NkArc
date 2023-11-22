@@ -207,6 +207,7 @@
     </Manifest>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="about.c" />
     <ClCompile Include="disk_info.c" />
     <ClCompile Include="enum_disk.c" />
     <ClCompile Include="enum_file.c" />
@@ -372,6 +373,7 @@
     <Image Include="icons\fw.png" />
     <Image Include="icons\hdd.png" />
     <Image Include="icons\image.png" />
+    <Image Include="icons\info.png" />
     <Image Include="icons\iso.png" />
     <Image Include="icons\link.png" />
     <Image Include="icons\lock.png" />
