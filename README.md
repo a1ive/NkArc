@@ -28,7 +28,6 @@ NkArc is a versatile multi filesystem explorer for Windows based on the GRUB2 co
 - MBR, GPT, Apple, BSD, ACRON, Amiga, DragonFly, DVH, Plan9, SUN
  
 ## Planned Features
-- [ ] Support for batch extraction of folders/files with checkbox selection
 - [ ] Dokan/WinFsp support
 - [ ] APFS
 - [ ] ReFS
