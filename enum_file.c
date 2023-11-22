@@ -21,6 +21,7 @@
 #include <grub/disk.h>
 #include <grub/fs.h>
 #include <grub/file.h>
+#include <grub/datetime.h>
 
 #include <nkctx.h>
 #include <stdlib.h>
@@ -134,7 +135,7 @@ callback_enum_file(const char* filename,
 		p->is_dir = TRUE;
 		p->icon = IDR_PNG_DIR;
 		p->path = grub_xasprintf("%s%s/", nk.path, filename);
-		strcpy_s(p->desc, ARRAY_SIZE(p->desc), GET_STR(LANG_STR_DIR));
+		strcpy_s(p->human_size, ARRAY_SIZE(p->human_size), GET_STR(LANG_STR_DIR));
 	}
 	else
 	{
@@ -145,11 +146,21 @@ callback_enum_file(const char* filename,
 		if (file)
 		{
 			p->size = grub_file_size(file);
-			strcpy_s(p->desc, ARRAY_SIZE(p->desc), grub_get_human_size(p->size, GRUB_HUMAN_SIZE_SHORT));
+			strcpy_s(p->human_size, ARRAY_SIZE(p->human_size), grub_get_human_size(p->size, GRUB_HUMAN_SIZE_SHORT));
 			grub_file_close(file);
 		}
 		else
-			strcpy_s(p->desc, ARRAY_SIZE(p->desc), GET_STR(LANG_STR_UNKNOWN));
+			strcpy_s(p->human_size, ARRAY_SIZE(p->human_size), GET_STR(LANG_STR_UNKNOWN));
+	}
+	p->time[0] = '\0';
+	if (info->mtimeset)
+	{
+		struct grub_datetime datetime;
+		grub_unixtime2datetime(info->mtime, &datetime);
+		if (datetime.year < 3000)
+			grub_snprintf(p->time, ARRAY_SIZE(p->time), "%04d-%02d-%02d %02d:%02d:%02d",
+				datetime.year, datetime.month, datetime.day,
+				datetime.hour, datetime.minute, datetime.second);
 	}
 	if (info->symlink)
 		p->icon = IDR_PNG_LINK;

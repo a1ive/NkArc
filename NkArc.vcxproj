@@ -306,6 +306,7 @@
     <ClCompile Include="grub\lib\crc.c" />
     <ClCompile Include="grub\lib\crc64.c" />
     <ClCompile Include="grub\lib\crypto.c" />
+    <ClCompile Include="grub\lib\datetime.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_crc.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_md5.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_sha1.c" />

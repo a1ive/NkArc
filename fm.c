@@ -216,12 +216,12 @@ draw_file_info(struct nk_context* ctx, struct nkctx_file* info)
 	if (!info->name)
 		return;
 #ifdef NKCTX_SELECT_FILE
-	nk_layout_row(ctx, NK_DYNAMIC, 0, 3, (float[3]) { nk.gui_ratio, 0.8f, 0.2f - nk.gui_ratio });
+	nk_layout_row(ctx, NK_DYNAMIC, 0, 4, (float[4]) { nk.gui_ratio, 0.6f, 0.3f, 0.1f - nk.gui_ratio });
 	info->selected = !nk_check_text(ctx, "", 1, !info->selected);
 	if (info->selected)
 		color = nk_rgb(63, 98, 126);
 #else
-	nk_layout_row(ctx, NK_DYNAMIC, 0, 2, (float[2]) { 0.8f, 0.2f });
+	nk_layout_row(ctx, NK_DYNAMIC, 0, 3, (float[3]) { 0.6f, 0.3f, 0.1f });
 #endif
 	nk.style_button.normal = nk_style_item_color(color);
 
@@ -237,7 +237,8 @@ draw_file_info(struct nk_context* ctx, struct nkctx_file* info)
 	if (!info->is_dir)
 		draw_file_menu(ctx, info, bounds);
 
-	nk_label(ctx, info->desc, NK_TEXT_LEFT);
+	nk_label(ctx, info->time, NK_TEXT_LEFT);
+	nk_label(ctx, info->human_size, NK_TEXT_LEFT);
 }
 
 void
@@ -250,7 +251,7 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	{
 		nkctx_fini(0);
 	}
-	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 2);
+	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 3);
 
 	struct nk_rect rect = nk_layout_widget_bounds(ctx);
 	nk.gui_ratio = rect.h / rect.w;

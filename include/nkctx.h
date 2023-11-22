@@ -97,7 +97,8 @@ struct nkctx_file
 {
 	char* name;
 	char* path;
-	char desc[256];
+	char human_size[12];
+	char time[20];
 	BOOL is_dir;
 	BOOL selected;
 	UINT64 size;

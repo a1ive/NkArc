@@ -25,7 +25,7 @@ wWinMain(_In_ HINSTANCE hInstance,
 	_In_ int nCmdShow)
 {
 	nkctx_init(hInstance,
-		200, 200, 800, 600,
+		100, 100, 900, 600,
 		L"NkWindowClass", L"Demo",
 		L"Courier New", 16);
 	nkctx_loop();
