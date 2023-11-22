@@ -27,7 +27,7 @@
 #include <grub/file.h>
 #include <grub/charset.h>
 
-#define GRUB_MAX_PATH_LEN 4095
+#define GRUB_MAX_PATH_LEN 32767
 
 static WCHAR m_u16_buf[GRUB_MAX_PATH_LEN + 1];
 
@@ -35,7 +35,14 @@ static LPCWSTR
 get_u16_path(LPCWSTR dir, const char* file)
 {
 	size_t len;
-	wcscpy_s(m_u16_buf, GRUB_MAX_PATH_LEN - 1, dir);
+	grub_memset(m_u16_buf, 0, sizeof(m_u16_buf));
+	if (_wcsnicmp(dir, L"\\\\?\\", 4) == 0)
+		wcscpy_s(m_u16_buf, GRUB_MAX_PATH_LEN - 1, dir);
+	else
+	{
+		wcscpy_s(m_u16_buf, GRUB_MAX_PATH_LEN - 1, L"\\\\?\\");
+		wcscat_s(m_u16_buf, GRUB_MAX_PATH_LEN - 1, dir);
+	}
 	len = wcslen(m_u16_buf);
 	if (len >= 1 && m_u16_buf[len - 1] != L'\\')
 		m_u16_buf[len++] = L'\\';
@@ -85,6 +92,91 @@ fail:
 		grub_file_close(file);
 	grub_errno = GRUB_ERR_NONE;
 	return ret;
+}
+
+struct ctx_extract_file
+{
+	grub_fs_t fs;
+	grub_disk_t disk;
+	WCHAR* target_dir;
+	char* path;
+};
+
+static void
+nkctx_extract_dir_real(struct ctx_extract_file* ctx);
+
+static int
+callback_extract_file(const char* filename,
+	const struct grub_dirhook_info* info, void* data)
+{
+	struct ctx_extract_file* ctx = data;
+	if (nkctx_is_hidden_file(filename))
+		return 0;
+	if (info->symlink)
+		return 0;
+	if (info->dir)
+	{
+		struct ctx_extract_file* new_ctx = grub_malloc(sizeof(struct ctx_extract_file));
+		new_ctx->path = grub_xasprintf("%s/%s/", ctx->path, filename);
+		new_ctx->target_dir = _wcsdup(get_u16_path(ctx->target_dir, filename));
+		new_ctx->fs = ctx->fs;
+		new_ctx->disk = ctx->disk;
+		nkctx_extract_dir_real(new_ctx);
+		grub_free(new_ctx->path);
+		free(new_ctx->target_dir);
+		grub_free(new_ctx);
+	}
+	else
+	{
+		char* path = grub_xasprintf("%s/%s", ctx->path, filename);
+		nkctx_extract_file(ctx->target_dir, path);
+		grub_free(path);
+	}
+	grub_errno = GRUB_ERR_NONE;
+	return 0;
+}
+
+static void
+nkctx_extract_dir_real(struct ctx_extract_file* ctx)
+{
+	CreateDirectoryW(ctx->target_dir, NULL);
+	grub_errno = GRUB_ERR_NONE;
+	char* dir = grub_strchr(ctx->path, ')');
+	ctx->fs->fs_dir(ctx->disk, ++dir, callback_extract_file, ctx); 
+	grub_errno = GRUB_ERR_NONE;
+}
+
+void
+nkctx_extract_dir(LPCWSTR target_dir)
+{
+	DWORD i;
+	char* disk_name = grub_file_get_disk_name(nk.path);
+	grub_disk_t disk = grub_disk_open(disk_name);
+	grub_free(disk_name);
+	grub_fs_t fs = grub_fs_probe(disk);
+	grub_errno = GRUB_ERR_NONE;
+	for (i = 0; i < nk.file_count; i++)
+	{
+		struct nkctx_file* p = &nk.files[i];
+		if (!p->name || !p->selected || p->icon == IDR_PNG_LINK)
+			continue;
+		if (p->is_dir)
+		{
+			struct ctx_extract_file ctx =
+			{
+				.fs = fs,
+				.disk = disk,
+				.target_dir = _wcsdup(get_u16_path(target_dir, p->name)),
+				.path = grub_strdup(p->path),
+			};
+			nkctx_extract_dir_real(&ctx);
+			grub_free(ctx.path);
+			free(ctx.target_dir);
+		}
+		else
+			nkctx_extract_file(target_dir, p->path);
+	}
+	grub_disk_close(disk);
 }
 
 WCHAR*

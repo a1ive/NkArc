@@ -27,14 +27,14 @@
 #include <stdlib.h>
 #include <lang.h>
 
-static bool
-is_hidden(const char* filename)
+BOOL
+nkctx_is_hidden_file(const char* filename)
 {
 	if (strcmp(filename, ".") == 0)
-		return true;
+		return TRUE;
 	if (strcmp(filename, "..") == 0)
-		return true;
-	return false;
+		return TRUE;
+	return FALSE;
 }
 
 static int
@@ -42,7 +42,7 @@ callback_count_file(const char* filename,
 	const struct grub_dirhook_info* info,
 	void* data)
 {
-	if (is_hidden(filename))
+	if (nkctx_is_hidden_file(filename))
 		return 0;
 	if (info->dir)
 		nk.dir_count++;
@@ -122,7 +122,7 @@ callback_enum_file(const char* filename,
 	const struct grub_dirhook_info* info,
 	void* data)
 {
-	if (is_hidden(filename))
+	if (nkctx_is_hidden_file(filename))
 		return 0;
 
 	struct ctx_enum_file* ctx = (struct ctx_enum_file*)data;

@@ -178,6 +178,9 @@ nkctx_enum_file(const char* dir);
 void
 nkctx_free_file(void);
 
+BOOL
+nkctx_is_hidden_file(const char* filename);
+
 struct nkctx_window
 {
 	void (*init)(const char* path);
@@ -205,6 +208,9 @@ nkctx_hide_progress(void);
 
 BOOL
 nkctx_extract_file(LPCWSTR target_dir, const char* source_file);
+
+void
+nkctx_extract_dir(LPCWSTR target_dir);
 
 WCHAR*
 nkctx_select_dir(void);

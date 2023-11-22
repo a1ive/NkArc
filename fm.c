@@ -215,14 +215,10 @@ draw_file_info(struct nk_context* ctx, struct nkctx_file* info)
 	struct nk_color color = nk.table[NK_COLOR_WINDOW];
 	if (!info->name)
 		return;
-#ifdef NKCTX_SELECT_FILE
-	nk_layout_row(ctx, NK_DYNAMIC, 0, 4, (float[4]) { nk.gui_ratio, 0.6f, 0.3f, 0.1f - nk.gui_ratio });
+	nk_layout_row(ctx, NK_DYNAMIC, 0, 4, (float[4]) { nk.gui_ratio, 0.5f, 0.3f, 0.2f - nk.gui_ratio });
 	info->selected = !nk_check_text(ctx, "", 1, !info->selected);
 	if (info->selected)
 		color = nk_rgb(63, 98, 126);
-#else
-	nk_layout_row(ctx, NK_DYNAMIC, 0, 3, (float[3]) { 0.6f, 0.3f, 0.1f });
-#endif
 	nk.style_button.normal = nk_style_item_color(color);
 
 	bounds = nk_widget_bounds(ctx);
@@ -252,7 +248,7 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	{
 		nkctx_fini(0);
 	}
-	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 4);
+	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 5);
 
 	struct nk_rect rect = nk_layout_widget_bounds(ctx);
 	nk.gui_ratio = rect.h / rect.w;
@@ -260,11 +256,23 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_UP), GET_STR(LANG_STR_UP)))
 		go_up();
-	nk_layout_row_push(ctx, 1.0f - 3 * nk.gui_ratio);
+	nk_layout_row_push(ctx, 1.0f - 4 * nk.gui_ratio);
 	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : GET_STR(LANG_STR_THIS_PC), NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_FILES)))
 		nkctx_enum_file(nk.path);
+	nk_layout_row_push(ctx, nk.gui_ratio);
+	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_COPY), GET_STR(LANG_STR_EXTRACT_DIR)))
+	{
+		WCHAR* dir = nkctx_select_dir();
+		if (dir)
+		{
+			nkctx_extract_dir(dir);
+			MessageBoxW(nk.wnd, GET_WCS(LANG_WCS_DONE), GET_WCS(LANG_WCS_INFO), MB_OK);
+			free(dir);
+		}
+	}
+	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_INFO), GET_STR(LANG_STR_ABOUT)))
 		show_about = TRUE;
 	nk_layout_row_end(ctx);
