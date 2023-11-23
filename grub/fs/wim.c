@@ -224,6 +224,7 @@ struct grub_fshelp_node
 {
 	struct grub_wim_data* data;
 	grub_uint64_t offset;
+	grub_uint64_t mtime;
 	struct wim_directory_entry direntry;
 	struct wim_security_header security;
 	struct wim_lookup_entry entry;
@@ -575,6 +576,7 @@ grub_wim_iterate_dir(grub_fshelp_node_t dir,
 			goto end;
 		node->data = data;
 		node->offset = dir->direntry.subdir;
+		node->mtime = dir->direntry.mtime;
 
 		grub_memcpy(&node->direntry, &dir->direntry, sizeof(struct wim_directory_entry));
 		grub_memcpy(&node->security, &dir->security, sizeof(struct wim_security_header));
@@ -613,6 +615,10 @@ grub_wim_dir_iter(const char* filename, enum grub_fshelp_filetype filetype,
 
 	info.dir = ((filetype & GRUB_FSHELP_TYPE_MASK) == GRUB_FSHELP_DIR);
 	info.case_insensitive = 1;
+	info.mtimeset = 1;
+	info.mtime = grub_divmod64(node->mtime, 10000000, 0)
+		- 86400ULL * 365 * (1970 - 1601)
+		- 86400ULL * ((1970 - 1601) / 4) + 86400ULL * ((1970 - 1601) / 100);
 	grub_free(node);
 	return ctx->hook(filename, &info, ctx->hook_data);
 }
