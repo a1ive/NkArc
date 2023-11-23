@@ -47,6 +47,24 @@
 #define RT_BIT_32(bit)         (1U << (bit))
 #define RT_BIT_64(bit)         (1ULL << (bit))
 
+/** No flags. */
+#define VD_IMAGE_FLAGS_NONE                     (0)
+/** Fixed image. */
+#define VD_IMAGE_FLAGS_FIXED                    (0x10000)
+/** Diff image. Mutually exclusive with fixed image. */
+#define VD_IMAGE_FLAGS_DIFF                     (0x20000)
+/** VMDK: Split image into 2GB extents. */
+#define VD_VMDK_IMAGE_FLAGS_SPLIT_2G            (0x0001)
+/** VMDK: Raw disk image (giving access to a number of host partitions). */
+#define VD_VMDK_IMAGE_FLAGS_RAWDISK             (0x0002)
+/** VMDK: stream optimized image, read only. */
+#define VD_VMDK_IMAGE_FLAGS_STREAM_OPTIMIZED    (0x0004)
+/** VMDK: ESX variant, use in addition to other flags. */
+#define VD_VMDK_IMAGE_FLAGS_ESX                 (0x0008)
+/** VDI: Fill new blocks with zeroes while expanding image file. Only valid
+ * for newly created images, never set for opened existing images. */
+#define VD_VDI_IMAGE_FLAGS_ZERO_EXPAND          (0x0100)
+
 typedef union RTUUID
 {
 	/** 8-bit view. */

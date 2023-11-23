@@ -288,6 +288,7 @@
     <ClCompile Include="grub\io\lzma.c" />
     <ClCompile Include="grub\io\lzopio.c" />
     <ClCompile Include="grub\io\offset.c" />
+    <ClCompile Include="grub\io\vdi.c" />
     <ClCompile Include="grub\io\vhd.c" />
     <ClCompile Include="grub\io\vhdx.c" />
     <ClCompile Include="grub\io\xzio.c" />

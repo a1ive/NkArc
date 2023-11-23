@@ -501,6 +501,9 @@
     <ClCompile Include="about.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="grub\io\vdi.c">
+      <Filter>src\grub\io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
