@@ -109,7 +109,7 @@ grub_file_open(const char* name, enum grub_file_type type)
 	file->name = grub_strdup(name);
 	grub_errno = GRUB_ERR_NONE;
 
-	for (filter = 0; file && filter < ARRAY_SIZE(grub_file_filters);
+	for (filter = 0; file && filter <= GRUB_FILE_FILTER_COMPRESSION_LAST;
 		filter++)
 		if (grub_file_filters[filter])
 		{
@@ -119,6 +119,19 @@ grub_file_open(const char* name, enum grub_file_type type)
 			{
 				file->name = grub_strdup(name);
 				grub_errno = GRUB_ERR_NONE;
+			}
+		}
+	for (filter = GRUB_FILE_FILTER_VDISK_FIRST;
+		file && filter <= GRUB_FILE_FILTER_VDISK_LAST; filter++)
+		if (grub_file_filters[filter])
+		{
+			last_file = file;
+			file = grub_file_filters[filter](file, type);
+			if (file && file != last_file)
+			{
+				file->name = grub_strdup(name);
+				grub_errno = GRUB_ERR_NONE;
+				break;
 			}
 		}
 	if (!file)
