@@ -498,6 +498,9 @@
     <ClCompile Include="grub\io\vdi.c">
       <Filter>src\grub\io</Filter>
     </ClCompile>
+    <ClCompile Include="grub\io\qcow.c">
+      <Filter>src\grub\io</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">

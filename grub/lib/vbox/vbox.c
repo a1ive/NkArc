@@ -31,6 +31,11 @@
 
 #include "vbox.h"
 #include <grub/err.h>
+#include <grub/misc.h>
+#include <grub/deflate.h>
+
+#define MINILZO_HAVE_CONFIG_H
+#include "../minilzo/minilzo.h"
 
  /** Conversion table used by the conversion functions.
   * 0xff if not a hex number, otherwise the value. */
@@ -289,4 +294,133 @@ RTCrc32C(const void* pv, grub_size_t cb)
 
 	uCrc32C = rtCrc32CProcessWithTable(g_au32Crc32C, uCrc32C, pv, cb);
 	return RTCrc32CFinish(uCrc32C);
+}
+
+int
+RTZipBlockDecompress(RTZIPTYPE enmType, grub_uint32_t fFlags,
+	void const* pvSrc, grub_size_t cbSrc, grub_size_t* pcbSrcActual,
+	void* pvDst, grub_size_t cbDst, grub_size_t* pcbDstActual)
+{
+	(void)fFlags;
+
+	/*
+	 * Deal with flags involving prefixes.
+	 */
+	 /** @todo later: type and/or compressed length prefix. */
+
+	 /*
+	  * The type specific part.
+	  */
+	switch (enmType)
+	{
+	case RTZIPTYPE_LZF:
+	{
+#ifdef RTZIP_USE_LZF
+		unsigned cbDstActual = lzf_decompress(pvSrc, (unsigned)cbSrc, pvDst, (unsigned)cbDst);  /** @todo deal with size type overflows */
+		if (RT_UNLIKELY(cbDstActual < 1))
+		{
+# ifndef IPRT_NO_CRT /* no errno */
+			if (errno == E2BIG)
+				return VERR_BUFFER_OVERFLOW;
+			Assert(errno == EINVAL);
+# endif
+			return VERR_GENERAL_FAILURE;
+		}
+		if (pcbDstActual)
+			*pcbDstActual = cbDstActual;
+		if (pcbSrcActual)
+			*pcbSrcActual = cbSrc;
+		break;
+#else
+		return GRUB_ERR_NOT_IMPLEMENTED_YET;
+#endif
+	}
+
+	case RTZIPTYPE_STORE:
+	{
+		if (cbDst < cbSrc)
+			return GRUB_ERR_OUT_OF_RANGE;
+		grub_memcpy(pvDst, pvSrc, cbSrc);
+		if (pcbDstActual)
+			*pcbDstActual = cbSrc;
+		if (pcbSrcActual)
+			*pcbSrcActual = cbSrc;
+		break;
+	}
+
+	case RTZIPTYPE_LZJB:
+	{
+#ifdef RTZIP_USE_LZJB
+		if (*(uint8_t*)pvSrc == 1)
+		{
+			int rc = lzjb_decompress((uint8_t*)pvSrc + 1, pvDst, cbSrc - 1, cbDst, 0 /*??*/);
+			if (RT_UNLIKELY(rc != 0))
+				return VERR_GENERAL_FAILURE;
+			if (pcbDstActual)
+				*pcbDstActual = cbDst;
+		}
+		else
+		{
+			AssertReturn(cbDst >= cbSrc - 1, VERR_BUFFER_OVERFLOW);
+			memcpy(pvDst, (uint8_t*)pvSrc + 1, cbSrc - 1);
+			if (pcbDstActual)
+				*pcbDstActual = cbSrc - 1;
+		}
+		if (pcbSrcActual)
+			*pcbSrcActual = cbSrc;
+		break;
+#else
+		return GRUB_ERR_NOT_IMPLEMENTED_YET;
+#endif
+	}
+
+	case RTZIPTYPE_LZO:
+	{
+		int rc = lzo_init();
+		if (rc != LZO_E_OK)
+			return GRUB_ERR_BAD_COMPRESSED_DATA;
+		lzo_uint cbDstInOut = cbDst;
+		rc = lzo1x_decompress((const lzo_bytep)pvSrc, cbSrc, (lzo_bytep)pvDst, &cbDstInOut, NULL);
+		if (rc != LZO_E_OK)
+			switch (rc)
+			{
+			case LZO_E_OUTPUT_OVERRUN:  return GRUB_ERR_OUT_OF_RANGE;
+			default:
+			case LZO_E_INPUT_OVERRUN:   return GRUB_ERR_BAD_COMPRESSED_DATA;
+			}
+		if (pcbSrcActual)
+			*pcbSrcActual = cbSrc;
+		if (pcbDstActual)
+			*pcbDstActual = cbDstInOut;
+		break;
+	}
+	case RTZIPTYPE_ZLIB:
+	{
+		grub_ssize_t cbDstActual = grub_zlib_decompress((void *)pvSrc, cbSrc, 0, pvDst, cbDst);
+		if (cbDstActual < 0)
+			return GRUB_ERR_BAD_COMPRESSED_DATA;
+		if (pcbSrcActual)
+			*pcbSrcActual = cbSrc;
+		if (pcbDstActual)
+			*pcbDstActual = cbDstActual;
+		break;
+	}
+	case RTZIPTYPE_ZLIB_NO_HEADER:
+	{
+		grub_ssize_t cbDstActual = grub_deflate_decompress((void*)pvSrc, cbSrc, 0, pvDst, cbDst);
+		if (cbDstActual < 0)
+			return GRUB_ERR_BAD_COMPRESSED_DATA;
+		if (pcbSrcActual)
+			*pcbSrcActual = cbSrc;
+		if (pcbDstActual)
+			*pcbDstActual = cbDstActual;
+		break;
+	}
+	case RTZIPTYPE_BZLIB:
+		return GRUB_ERR_NOT_IMPLEMENTED_YET;
+
+	default:
+		return GRUB_ERR_BAD_ARGUMENT;
+	}
+	return GRUB_ERR_NONE;
 }

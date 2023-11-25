@@ -31,12 +31,25 @@
 
 #pragma once
 
+#include <stddef.h>
 #include <grub/types.h>
 
+#define _1K                    0x00000400
+#define _2K                    0x00000800
+#define _4K                    0x00001000
+#define _8K                    0x00002000
+#define _16K                   0x00004000
+#define _32K                   0x00008000
 #define _64K                   0x00010000
 #define _128K                  0x00020000
+#define _256K                  0x00040000
+#define _512K                  0x00080000
 #define _1M                    0x00100000
 #define _1T                    0x0000010000000000LL
+
+#ifndef UINT64_MAX
+#define UINT64_MAX        18446744073709551615ULL
+#endif
 
 #define RT_SUCCESS(rc) (rc == GRUB_ERR_NONE)
 #define RT_FAILURE(rc) (rc != GRUB_ERR_NONE)
@@ -46,6 +59,14 @@
 #define RT_BIT(bit)            (1U << (bit))
 #define RT_BIT_32(bit)         (1U << (bit))
 #define RT_BIT_64(bit)         (1ULL << (bit))
+
+#define RT_UOFFSETOF(type, member)             ((uintptr_t)&(((type *)(void *)0)->member))
+#define RT_SIZEOFMEMB(type, member)            (sizeof(((type *)(void *)0)->member))
+#define RT_UOFFSET_AFTER(a_Type, a_Member)     (RT_UOFFSETOF(a_Type, a_Member) + RT_SIZEOFMEMB(a_Type, a_Member))
+#define RT_FROM_MEMBER(pMem, Type, Member)      ((Type *)((grub_uint8_t *)(void *)(pMem) - RT_UOFFSETOF(Type, Member)))
+
+#define RT_ALIGN_T(u, uAlignment, type)         (((type)(u) + ((uAlignment) - 1)) & ~(type)((uAlignment) - 1))
+#define RT_ALIGN_64(u64, uAlignment)            RT_ALIGN_T(u64, uAlignment, grub_uint64_t)
 
 /** No flags. */
 #define VD_IMAGE_FLAGS_NONE                     (0)
@@ -93,6 +114,8 @@ typedef const RTUUID* PCRTUUID;
 
 #ifdef GRUB_CPU_WORDS_BIGENDIAN
 
+#define RT_BIG_ENDIAN
+
 #define RT_BE2H_U16(x) ((grub_uint16_t) (x)
 #define RT_BE2H_U32(x) ((grub_uint32_t) (x)
 #define RT_BE2H_U64(x) ((grub_uint64_t) (x))
@@ -106,6 +129,8 @@ typedef const RTUUID* PCRTUUID;
 #define RT_LE2H_U16(x)   grub_swap_bytes16(x)
 
 #else
+
+#define RT_LITTLE_ENDIAN
 
 #define RT_BE2H_U16(x) (grub_swap_bytes16 (x))
 #define RT_BE2H_U32(x) (grub_swap_bytes32 (x))
@@ -142,3 +167,148 @@ RTUuidCompareStr(PCRTUUID pUuid1, const char* pszString2);
 
 grub_uint32_t
 RTCrc32C(const void* pv, grub_size_t cb);
+
+typedef struct RTLISTNODE
+{
+	/** Pointer to the next list node. */
+	struct RTLISTNODE* pNext;
+	/** Pointer to the previous list node. */
+	struct RTLISTNODE* pPrev;
+} RTLISTNODE;
+/** Pointer to a list node. */
+typedef RTLISTNODE* PRTLISTNODE;
+/** Pointer to a const list node. */
+typedef RTLISTNODE const* PCRTLISTNODE;
+/** Pointer to a list node pointer. */
+typedef PRTLISTNODE* PPRTLISTNODE;
+
+static inline void RTListInit(PRTLISTNODE pList)
+{
+	pList->pNext = pList;
+	pList->pPrev = pList;
+}
+
+static inline void RTListAppend(PRTLISTNODE pList, PRTLISTNODE pNode)
+{
+	pList->pPrev->pNext = pNode;
+	pNode->pPrev = pList->pPrev;
+	pNode->pNext = pList;
+	pList->pPrev = pNode;
+}
+
+static inline void RTListPrepend(PRTLISTNODE pList, PRTLISTNODE pNode)
+{
+	pList->pNext->pPrev = pNode;
+	pNode->pNext = pList->pNext;
+	pNode->pPrev = pList;
+	pList->pNext = pNode;
+}
+
+static inline void RTListNodeInsertAfter(PRTLISTNODE pCurNode, PRTLISTNODE pNewNode)
+{
+	RTListPrepend(pCurNode, pNewNode);
+}
+
+static inline void RTListNodeInsertBefore(PRTLISTNODE pCurNode, PRTLISTNODE pNewNode)
+{
+	RTListAppend(pCurNode, pNewNode);
+}
+
+static inline void RTListNodeRemove(PRTLISTNODE pNode)
+{
+	PRTLISTNODE pPrev = pNode->pPrev;
+	PRTLISTNODE pNext = pNode->pNext;
+
+	pPrev->pNext = pNext;
+	pNext->pPrev = pPrev;
+
+	/* poison */
+	pNode->pNext = NULL;
+	pNode->pPrev = NULL;
+}
+
+static inline PRTLISTNODE RTListNodeRemoveRet(PRTLISTNODE pNode)
+{
+	PRTLISTNODE pPrev = pNode->pPrev;
+	PRTLISTNODE pNext = pNode->pNext;
+
+	pPrev->pNext = pNext;
+	pNext->pPrev = pPrev;
+
+	/* poison */
+	pNode->pNext = NULL;
+	pNode->pPrev = NULL;
+
+	return pNode;
+}
+
+#define RTListNodeIsDummy(pList, pNode, Type, Member) \
+         ((pNode) == RT_FROM_MEMBER((pList), Type, Member))
+
+#define RTListIsEmpty(pList)            ((pList)->pPrev == (pList))
+
+#define RTListNodeGetNext(pCurNode, Type, Member) \
+    RT_FROM_MEMBER((pCurNode)->pNext, Type, Member)
+
+#define RTListNodeGetPrev(pCurNode, Type, Member) \
+    RT_FROM_MEMBER((pCurNode)->pPrev, Type, Member)
+
+#define RTListGetFirst(pList, Type, Member) \
+    (!RTListIsEmpty(pList) ? RTListNodeGetNext(pList, Type, Member) : NULL)
+
+#define RTListForEach(pList, pIterator, Type, Member) \
+    for ((pIterator) = RTListNodeGetNext(pList, Type, Member); \
+         !RTListNodeIsDummy(pList, pIterator, Type, Member); \
+         (pIterator) = RT_FROM_MEMBER((pIterator)->Member.pNext, Type, Member))
+
+#define RTListForEachSafe(pList, pIterator, pIterNext, Type, Member) \
+    for ((pIterator) = RTListNodeGetNext(pList, Type, Member), \
+         (pIterNext) = RT_FROM_MEMBER((pIterator)->Member.pNext, Type, Member); \
+         !RTListNodeIsDummy(pList, pIterator, Type, Member); \
+         (pIterator) = (pIterNext), \
+         (pIterNext) = RT_FROM_MEMBER((pIterator)->Member.pNext, Type, Member))
+
+#define RTListForEachReverse(pList, pIterator, Type, Member) \
+    for ((pIterator) = RTListNodeGetPrev(pList, Type, Member); \
+         !RTListNodeIsDummy(pList, pIterator, Type, Member); \
+         (pIterator) = RT_FROM_MEMBER((pIterator)->Member.pPrev, Type, Member))
+
+typedef enum RTZIPTYPE
+{
+	/** Invalid. */
+	RTZIPTYPE_INVALID = 0,
+	/** Choose best fitting one. */
+	RTZIPTYPE_AUTO,
+	/** Store the data. */
+	RTZIPTYPE_STORE,
+	/** Zlib compression the data. */
+	RTZIPTYPE_ZLIB,
+	/** BZlib compress. */
+	RTZIPTYPE_BZLIB,
+	/** libLZF compress. */
+	RTZIPTYPE_LZF,
+	/** Lempel-Ziv-Jeff-Bonwick compression. */
+	RTZIPTYPE_LZJB,
+	/** Lempel-Ziv-Oberhumer compression. */
+	RTZIPTYPE_LZO,
+	/* Zlib compression the data without zlib header. */
+	RTZIPTYPE_ZLIB_NO_HEADER,
+	/** End of valid the valid compression types.  */
+	RTZIPTYPE_END
+} RTZIPTYPE;
+
+typedef enum RTZIPLEVEL
+{
+	/** Store, don't compress. */
+	RTZIPLEVEL_STORE = 0,
+	/** Fast compression. */
+	RTZIPLEVEL_FAST,
+	/** Default compression. */
+	RTZIPLEVEL_DEFAULT,
+	/** Maximal compression. */
+	RTZIPLEVEL_MAX
+} RTZIPLEVEL;
+
+int RTZipBlockDecompress(RTZIPTYPE enmType, grub_uint32_t fFlags,
+	void const* pvSrc, grub_size_t cbSrc, grub_size_t* pcbSrcActual,
+	void* pvDst, grub_size_t cbDst, grub_size_t* pcbDstActual);
