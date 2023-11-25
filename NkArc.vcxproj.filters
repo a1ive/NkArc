@@ -240,12 +240,6 @@
     <ClCompile Include="grub\fs\hfsplus.c">
       <Filter>src\grub\fs</Filter>
     </ClCompile>
-    <ClCompile Include="grub\io\bufio.c">
-      <Filter>src\grub\io</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\io\offset.c">
-      <Filter>src\grub\io</Filter>
-    </ClCompile>
     <ClCompile Include="grub\io\gzio.c">
       <Filter>src\grub\io</Filter>
     </ClCompile>
@@ -728,9 +722,6 @@
       <Filter>include\grub</Filter>
     </ClInclude>
     <ClInclude Include="include\grub\hfsplus.h">
-      <Filter>include\grub</Filter>
-    </ClInclude>
-    <ClInclude Include="include\grub\bufio.h">
       <Filter>include\grub</Filter>
     </ClInclude>
     <ClInclude Include="include\grub\deflate.h">

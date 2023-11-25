@@ -496,23 +496,6 @@ typedef struct VDIIMAGEDESC
 } VDIIMAGEDESC, * PVDIIMAGEDESC;
 
 /**
- * Async block discard states.
- */
-typedef enum VDIBLOCKDISCARDSTATE
-{
-	/** Invalid. */
-	VDIBLOCKDISCARDSTATE_INVALID = 0,
-	/** Read the last block. */
-	VDIBLOCKDISCARDSTATE_READ_BLOCK,
-	/** Write block into the hole. */
-	VDIBLOCKDISCARDSTATE_WRITE_BLOCK,
-	/** Update metadata. */
-	VDIBLOCKDISCARDSTATE_UPDATE_METADATA,
-	/** 32bit hack. */
-	VDIBLOCKDISCARDSTATE_32BIT_HACK = 0x7fffffff
-} VDIBLOCKDISCARDSTATE;
-
-/**
  * Endianess conversion direction.
  */
 typedef enum VDIECONV

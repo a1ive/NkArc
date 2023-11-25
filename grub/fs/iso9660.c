@@ -163,7 +163,7 @@ GRUB_PACKED_END
 
 /* The CE entry.  This is used to describe the next block where data
    can be found.  */
-	GRUB_PACKED_START
+GRUB_PACKED_START
 struct grub_iso9660_susp_ce
 {
 	struct grub_iso9660_susp_entry entry;

@@ -123,8 +123,8 @@ GRUB_PACKED_END
 /* The key as used on disk in a extent overflow tree.  Using this key
    the extents can be looked up using a fileid and logical start block
    as index.  */
-	GRUB_PACKED_START
-	struct grub_hfs_extent_key
+GRUB_PACKED_START
+struct grub_hfs_extent_key
 {
 	/* The kind of fork.  This is used to store meta information like
 	   icons, attributes, etc.  We will only use the datafork, which is

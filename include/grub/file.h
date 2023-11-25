@@ -245,10 +245,4 @@ grub_file_seekable(const grub_file_t file)
 	return !file->not_easily_seekable;
 }
 
-grub_file_t
-grub_file_offset_open(grub_file_t parent, enum grub_file_type type,
-	grub_off_t start, grub_off_t size);
-void
-grub_file_offset_close(grub_file_t file);
-
 #endif /* ! GRUB_FILE_HEADER */

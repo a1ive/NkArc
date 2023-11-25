@@ -144,8 +144,8 @@ struct lzx
 		grub_uint8_t remainder[LZX_MAIN_CODES - LZX_MAIN_LIT_CODES];
 	} main_lengths;
 	GRUB_PACKED_END
-		/** Length Huffman alphabet */
-		struct huffman_alphabet length;
+	/** Length Huffman alphabet */
+	struct huffman_alphabet length;
 	/** Length raw symbols
 	 *
 	 * Must immediately follow the length Huffman alphabet.

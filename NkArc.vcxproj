@@ -282,12 +282,10 @@
     <ClCompile Include="grub\fs\zfs\zfs_sha256.c" />
     <ClCompile Include="grub\fs\zfs\zfs_zstd.c" />
     <ClCompile Include="grub\fs\zip.c" />
-    <ClCompile Include="grub\io\bufio.c" />
     <ClCompile Include="grub\io\gzio.c" />
     <ClCompile Include="grub\io\lz4io.c" />
     <ClCompile Include="grub\io\lzma.c" />
     <ClCompile Include="grub\io\lzopio.c" />
-    <ClCompile Include="grub\io\offset.c" />
     <ClCompile Include="grub\io\vdi.c" />
     <ClCompile Include="grub\io\vhd.c" />
     <ClCompile Include="grub\io\vhdx.c" />
@@ -442,7 +440,6 @@
     <ClInclude Include="include\grub\archelp.h" />
     <ClInclude Include="include\grub\bsdlabel.h" />
     <ClInclude Include="include\grub\btrfs.h" />
-    <ClInclude Include="include\grub\bufio.h" />
     <ClInclude Include="include\grub\charset.h" />
     <ClInclude Include="include\grub\crypto.h" />
     <ClInclude Include="include\grub\datetime.h" />
