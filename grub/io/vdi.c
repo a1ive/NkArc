@@ -1043,7 +1043,7 @@ vdiRead(void* pBackendData, grub_uint64_t uOffset, void* pvBuf, grub_size_t cbTo
 	cbToRead = RT_MIN(cbToRead, getImageBlockSize(&pImage->Header) - offRead);
 
 	if (pImage->paBlocks[uBlock] == VDI_IMAGE_BLOCK_FREE)
-		rc = GRUB_ERR_BAD_DEVICE;
+		rc = GRUB_ERR_NONE;
 	else if (pImage->paBlocks[uBlock] == VDI_IMAGE_BLOCK_ZERO)
 	{
 		grub_memset(pvBuf, 0, cbToRead);

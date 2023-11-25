@@ -461,7 +461,7 @@ vhdRead(void* pBackendData, grub_uint64_t uOffset, void* pvBuf, grub_size_t cbTo
 		 * If the block is not allocated the content of the entry is ~0
 		 */
 		if (pImage->pBlockAllocationTable[cBlockAllocationTableEntry] == ~0U)
-			rc = GRUB_ERR_BAD_NUMBER;
+			rc = GRUB_ERR_NONE;
 		else
 		{
 			uVhdOffset = ((grub_uint64_t)pImage->pBlockAllocationTable[cBlockAllocationTableEntry] + pImage->cDataBlockBitmapSectors + cBATEntryIndex) * VHD_SECTOR_SIZE;
@@ -521,7 +521,7 @@ vhdRead(void* pBackendData, grub_uint64_t uOffset, void* pvBuf, grub_size_t cbTo
 
 					cbToRead = (grub_size_t) cSectors * VHD_SECTOR_SIZE;
 					
-					rc = GRUB_ERR_BAD_NUMBER;
+					rc = GRUB_ERR_NONE;
 				}
 			}
 		}
