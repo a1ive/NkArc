@@ -116,12 +116,13 @@ void grub_module_init_gzio(void);
 void grub_module_init_lz4io(void);
 void grub_module_init_lzma(void);
 void grub_module_init_lzopio(void);
+void grub_module_init_xzio(void);
+void grub_module_init_zstd(void);
+
 void grub_module_init_qcow(void);
 void grub_module_init_vdi(void);
 void grub_module_init_vhd(void);
 void grub_module_init_vhdx(void);
-void grub_module_init_xzio(void);
-void grub_module_init_zstd(void);
 
 void
 grub_module_init(void)
@@ -202,12 +203,13 @@ grub_module_init(void)
 	grub_module_init_lz4io();
 	grub_module_init_lzma();
 	grub_module_init_lzopio();
+	grub_module_init_xzio();
+	grub_module_init_zstd();
+
 	grub_module_init_qcow();
 	grub_module_init_vdi();
 	grub_module_init_vhd();
 	grub_module_init_vhdx();
-	grub_module_init_xzio();
-	grub_module_init_zstd();
 
 	grub_procfs_register("version", &version_info);
 }
@@ -288,12 +290,13 @@ void grub_module_fini_gzio(void);
 void grub_module_fini_lz4io(void);
 void grub_module_fini_lzma(void);
 void grub_module_fini_lzopio(void);
+void grub_module_fini_xzio(void);
+void grub_module_fini_zstd(void);
+
 void grub_module_fini_qcow(void);
 void grub_module_fini_vdi(void);
 void grub_module_fini_vhd(void);
 void grub_module_fini_vhdx(void);
-void grub_module_fini_xzio(void);
-void grub_module_fini_zstd(void);
 
 void
 grub_module_fini(void)
@@ -374,12 +377,13 @@ grub_module_fini(void)
 	grub_module_fini_lz4io();
 	grub_module_fini_lzma();
 	grub_module_fini_lzopio();
+	grub_module_fini_xzio();
+	grub_module_fini_zstd();
+
 	grub_module_fini_qcow();
 	grub_module_fini_vdi();
 	grub_module_fini_vhd();
 	grub_module_fini_vhdx();
-	grub_module_fini_xzio();
-	grub_module_fini_zstd();
 
 	grub_procfs_unregister(&version_info);
 }

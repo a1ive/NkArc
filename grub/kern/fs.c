@@ -101,7 +101,13 @@ grub_fs_blocklist_open(grub_file_t file, const char* name)
 	file->size = 0;
 	max_sectors = grub_disk_from_native_sector(disk, disk->total_sectors);
 	p = (char*)name;
-	for (i = 0; i < num; i++)
+	if (!*p)
+	{
+		blocks[0].offset = 0;
+		blocks[0].length = grub_disk_native_sectors(disk);
+		file->size = blocks[0].length << GRUB_DISK_SECTOR_BITS;
+	}
+	else for (i = 0; i < num; i++)
 	{
 		if (*p != '+')
 		{

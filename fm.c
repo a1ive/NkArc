@@ -68,7 +68,7 @@ fail:
 static void
 draw_disk_menu(struct nk_context* ctx, struct nkctx_disk* info, struct nk_rect bounds)
 {
-	if (!nk_hc_begin(ctx, (float)nk.width / 4.0f, nk.title_height * 4.0f, bounds))
+	if (!nk_hc_begin(ctx, (float)nk.width / 4.0f, nk.title_height * 5.0f, bounds))
 		return;
 
 	nk.style_button.normal = nk_style_item_color(nk.table[NK_COLOR_WINDOW]);
@@ -90,6 +90,15 @@ draw_disk_menu(struct nk_context* ctx, struct nkctx_disk* info, struct nk_rect b
 	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_INFO), GET_STR(LANG_STR_DISK_INFO), NULL))
 	{
 		nkctx_disk_info.init(info->name);
+		nk_contextual_close(ctx);
+	}
+
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_BIN), GET_STR(LANG_STR_VIEW_HEX), NULL))
+	{
+		char* p = grub_strdup(info->path);
+		p[strlen(p) - 1] = '\0';
+		nkctx_hex.init(p);
+		grub_free(p);
 		nk_contextual_close(ctx);
 	}
 
@@ -161,7 +170,7 @@ draw_pc_button(struct nk_context* ctx)
 static void
 draw_file_menu(struct nk_context* ctx, struct nkctx_file* info, struct nk_rect bounds)
 {
-	if (!nk_hc_begin(ctx, (float)nk.width / 4.0f, nk.title_height * 6.0f, bounds))
+	if (!nk_hc_begin(ctx, (float)nk.width / 4.0f, nk.title_height * 7.0f, bounds))
 		return;
 
 	nk.style_button.normal = nk_style_item_color(nk.table[NK_COLOR_WINDOW]);
@@ -180,6 +189,12 @@ draw_file_menu(struct nk_context* ctx, struct nkctx_file* info, struct nk_rect b
 	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_RM), GET_STR(LANG_STR_MOUNT_DISK), NULL))
 	{
 		nkctx_mount.init(info->path);
+		nk_contextual_close(ctx);
+	}
+
+	if (nk_hb_image_label_styled(ctx, &nk.style_button, GET_PNG(IDR_PNG_BIN), GET_STR(LANG_STR_VIEW_HEX), NULL))
+	{
+		nkctx_hex.init(info->path);
 		nk_contextual_close(ctx);
 	}
 
@@ -229,7 +244,7 @@ draw_file_info(struct nk_context* ctx, struct nkctx_file* info)
 		if (info->is_dir)
 			nkctx_enum_file(info->path);
 		else
-			nkctx_hex.init(info->path);
+			info->selected = !info->selected;
 	}
 
 	if (!info->is_dir)
