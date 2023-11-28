@@ -319,14 +319,23 @@ vhdOpenImage(PVHDIMAGE pImage)
 	int rc;
 
 	pImage->FileSize = grub_file_size(pImage->File);
-	//pImage->uCurrentEndOfFile = pImage->FileSize - sizeof(VHDFooter);
+	pImage->uCurrentEndOfFile = pImage->FileSize - sizeof(VHDFooter);
 
-	rc = vhdFileReadSync(pImage, 0, &vhdFooter, sizeof(VHDFooter), NULL);
+	rc = vhdFileReadSync(pImage, pImage->uCurrentEndOfFile, &vhdFooter, sizeof(VHDFooter), NULL);
 	if (RT_SUCCESS(rc))
 	{
 		if (grub_memcmp(vhdFooter.Cookie, VHD_FOOTER_COOKIE, VHD_FOOTER_COOKIE_SIZE) != 0)
 		{
-			rc = GRUB_ERR_BAD_DEVICE;
+			/*
+			* There is also a backup header at the beginning in case the image got corrupted.
+			* Such corrupted images are detected here to let the open handler repair it later.
+			*/
+			rc = vhdFileReadSync(pImage, 0, &vhdFooter, sizeof(VHDFooter), NULL);
+			if (RT_SUCCESS(rc))
+			{
+				if (grub_memcmp(vhdFooter.Cookie, VHD_FOOTER_COOKIE, VHD_FOOTER_COOKIE_SIZE) != 0)
+					rc = GRUB_ERR_BAD_DEVICE;
+			}
 		}
 	}
 

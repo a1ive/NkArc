@@ -18,7 +18,7 @@ NkArc is a versatile multi filesystem explorer for Windows based on the GRUB2 co
 - **CD/DVD**: ISO9660, UDF
 - **Other**: Fbinst1.6/1.7, AFFS, AFS, BFS, LynxFS, romfs, SFS (Amiga Smart FileSystem)
 - **Archive**: cpio, SquashFS, tar, WIM (lzx, Xpress), zip
-- **Compression**: gz, lz4, lzma, lzop, xz, zstd
+- **Compression**: gz, lzma, lzop, xz, zstd
 - **Virtual Disk**: VHD (Fixed/Dynamic), VHDX (Fixed/Dynamic), VDI (Fixed/Dynamic), QCOW1/2/3, DMG (zlib)
 ## Supported Dynamic Disks
 - **Windows**: LDM (Logical Disk Manager)
@@ -33,6 +33,7 @@ NkArc is a versatile multi filesystem explorer for Windows based on the GRUB2 co
 - [ ] ReFS
 - [ ] 7z
 - [ ] VMDK
+- [ ] lz4
 - [ ] LUKS encrypted disk support
 - [ ] Bitlocker encrypted disk support
 
