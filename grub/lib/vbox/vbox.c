@@ -296,6 +296,347 @@ RTCrc32C(const void* pv, grub_size_t cb)
 	return RTCrc32CFinish(uCrc32C);
 }
 
+/** @def RTBASE64_EOL_SIZE
+ * The size of the end-of-line marker. */
+#if defined(_WIN32)
+# define RTBASE64_EOL_SIZE      (sizeof("\r\n") - 1)
+#else
+# define RTBASE64_EOL_SIZE      (sizeof("\n")   - 1)
+#endif
+
+
+/** Insert line breaks into encoded string.
+ * The size of the end-of-line marker is that that of the host platform.
+ */
+#define RTBASE64_FLAGS_EOL_NATIVE       0U /**< Use native newlines. */
+#define RTBASE64_FLAGS_NO_LINE_BREAKS   1U /**< No newlines.  */
+#define RTBASE64_FLAGS_EOL_LF           2U /**< Use UNIX-style newlines. */
+#define RTBASE64_FLAGS_EOL_CRLF         3U /**< Use DOS-style newlines. */
+#define RTBASE64_FLAGS_EOL_STYLE_MASK   3U /**< End-of-line style mask. */
+
+/** The line length used for encoding. */
+#define RTBASE64_LINE_LEN   64
+
+#define BASE64_SPACE        0xc0
+#define BASE64_PAD          0xe0
+#define BASE64_NULL         0xfe
+#define BASE64_INVALID      0xff
+
+/** Base64 character to value. (RFC 2045)
+ * ASSUMES ASCII / UTF-8. */
+static const grub_uint8_t g_au8rtBase64CharToVal[256] =
+{
+	0xfe, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xc0, 0xc0, 0xc0,   0xc0, 0xc0, 0xff, 0xff, /* 0x00..0x0f */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0x10..0x1f */
+	0xc0, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff,   62,   0xff, 0xff, 0xff,   63, /* 0x20..0x2f */
+	  52,   53,   54,   55,     56,   57,   58,   59,     60,   61, 0xff, 0xff,   0xff, 0xe0, 0xff, 0xff, /* 0x30..0x3f */
+	0xff,    0,    1,    2,      3,    4,    5,    6,      7,    8,    9,   10,     11,   12,   13,   14, /* 0x40..0x4f */
+	  15,   16,   17,   18,     19,   20,   21,   22,     23,   24,   25, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0x50..0x5f */
+	0xff,   26,   27,   28,     29,   30,   31,   32,     33,   34,   35,   36,     37,   38,   39,   40, /* 0x60..0x6f */
+	  41,   42,   43,   44,     45,   46,   47,   48,     49,   50,   51, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0x70..0x7f */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0x80..0x8f */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0x90..0x9f */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0xa0..0xaf */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0xb0..0xbf */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0xc0..0xcf */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0xd0..0xdf */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff, /* 0xe0..0xef */
+	0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff,   0xff, 0xff, 0xff, 0xff  /* 0xf0..0xff */
+};
+
+/** Value to Base64 character. (RFC 2045) */
+static const char g_szrtBase64ValToChar[64 + 1] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+/** The end-of-line lengths (indexed by style flag value). */
+static const grub_size_t g_acchrtBase64EolStyles[RTBASE64_FLAGS_EOL_STYLE_MASK + 1] =
+{
+	/*[RTBASE64_FLAGS_EOL_NATIVE    ]:*/ RTBASE64_EOL_SIZE,
+	/*[RTBASE64_FLAGS_NO_LINE_BREAKS]:*/ 0,
+	/*[RTBASE64_FLAGS_EOL_LF        ]:*/ 1,
+	/*[RTBASE64_FLAGS_EOL_CRLF      ]:*/ 2
+};
+
+/** The end-of-line characters (zero, one or two). */
+static const char g_aachrtBase64EolStyles[RTBASE64_FLAGS_EOL_STYLE_MASK + 1][2] =
+{
+	/*[RTBASE64_FLAGS_EOL_NATIVE    ]:*/ { RTBASE64_EOL_SIZE == 1 ? '\n' : '\r', RTBASE64_EOL_SIZE == 1 ? '\0' : '\n', },
+	/*[RTBASE64_FLAGS_NO_LINE_BREAKS]:*/ { '\0', '\0' },
+	/*[RTBASE64_FLAGS_EOL_LF        ]:*/ { '\n', '\0' },
+	/*[RTBASE64_FLAGS_EOL_CRLF      ]:*/ { '\r', '\n' },
+};
+
+/** Fetched the next character in the string and translates it. */
+static grub_uint8_t rtBase64TranslateNext(const char* pszString, grub_size_t cchStringMax)
+{
+	if (cchStringMax > 0)
+		return g_au8rtBase64CharToVal[(unsigned char)*pszString];
+	return BASE64_NULL;
+}
+
+/**
+ * Recalcs 6-bit to 8-bit and adjust for padding.
+ */
+static grub_ssize_t rtBase64DecodedSizeRecalc(grub_uint32_t c6Bits, unsigned cbPad)
+{
+	size_t cb;
+	if (c6Bits * 3 / 3 == c6Bits)
+	{
+		if ((c6Bits * 3 % 4) != 0)
+			return -1;
+		cb = c6Bits * 3 / 4;
+	}
+	else
+	{
+		if ((c6Bits * (grub_uint64_t)3 % 4) != 0)
+			return -1;
+		cb = c6Bits * (grub_uint64_t)3 / 4;
+	}
+
+	if (cb < cbPad)
+		return -1;
+	cb -= cbPad;
+	return cb;
+}
+
+/*
+ * Mostly the same as RTBase64DecodedUtf16SizeEx, except for the simpler
+ * character type.  Fixes must be applied to both copies of the code.
+ */
+static grub_ssize_t RTBase64DecodedSizeEx(const char* pszString, grub_size_t cchStringMax, char** ppszEnd)
+{
+	/*
+	 * Walk the string until a non-encoded or non-space character is encountered.
+	 */
+	grub_uint32_t    c6Bits = 0;
+	grub_uint8_t     u8;
+
+	while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) != BASE64_NULL)
+	{
+		if (u8 < 64)
+			c6Bits++;
+		else if (u8 != BASE64_SPACE)
+			break;
+
+		/* advance */
+		pszString++;
+		cchStringMax--;
+	}
+
+	/*
+	 * Padding can only be found at the end and there is
+	 * only 1 or 2 padding chars. Deal with it first.
+	 */
+	unsigned    cbPad = 0;
+	if (u8 == BASE64_PAD)
+	{
+		cbPad = 1;
+		c6Bits++;
+		pszString++;
+		cchStringMax--;
+		while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) != BASE64_NULL)
+		{
+			if (u8 != BASE64_SPACE)
+			{
+				if (u8 != BASE64_PAD)
+					break;
+				c6Bits++;
+				cbPad++;
+			}
+			pszString++;
+			cchStringMax--;
+		}
+		if (cbPad >= 3)
+			return -1;
+	}
+
+	/*
+	 * Invalid char and no where to indicate where the
+	 * Base64 text ends? Return failure.
+	 */
+	if (u8 == BASE64_INVALID
+		&& !ppszEnd)
+		return -1;
+
+	/*
+	 * Recalc 6-bit to 8-bit and adjust for padding.
+	 */
+	if (ppszEnd)
+		*ppszEnd = (char*)pszString;
+	return rtBase64DecodedSizeRecalc(c6Bits, cbPad);
+}
+
+grub_ssize_t RTBase64DecodedSize(const char* pszString, char** ppszEnd)
+{
+	return RTBase64DecodedSizeEx(pszString, RTSTR_MAX, ppszEnd);
+}
+
+static int RTBase64DecodeEx(const char* pszString, grub_size_t cchStringMax, void* pvData, grub_size_t cbData,
+	grub_size_t* pcbActual, char** ppszEnd)
+{
+	/*
+	 * Process input in groups of 4 input / 3 output chars.
+	 */
+	grub_uint8_t     u8Trio[3] = { 0, 0, 0 }; /* shuts up gcc */
+	grub_uint8_t* pbData = (grub_uint8_t*)pvData;
+	grub_uint8_t     u8;
+	unsigned    c6Bits = 0;
+
+	for (;;)
+	{
+		/* The first 6-bit group. */
+		while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) == BASE64_SPACE)
+			pszString++, cchStringMax--;
+		if (u8 >= 64)
+		{
+			c6Bits = 0;
+			break;
+		}
+		u8Trio[0] = u8 << 2;
+		pszString++;
+		cchStringMax--;
+
+		/* The second 6-bit group. */
+		while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) == BASE64_SPACE)
+			pszString++, cchStringMax--;
+		if (u8 >= 64)
+		{
+			c6Bits = 1;
+			break;
+		}
+		u8Trio[0] |= u8 >> 4;
+		u8Trio[1] = u8 << 4;
+		pszString++;
+		cchStringMax--;
+
+		/* The third 6-bit group. */
+		u8 = BASE64_INVALID;
+		while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) == BASE64_SPACE)
+			pszString++, cchStringMax--;
+		if (u8 >= 64)
+		{
+			c6Bits = 2;
+			break;
+		}
+		u8Trio[1] |= u8 >> 2;
+		u8Trio[2] = u8 << 6;
+		pszString++;
+		cchStringMax--;
+
+		/* The fourth 6-bit group. */
+		u8 = BASE64_INVALID;
+		while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) == BASE64_SPACE)
+			pszString++, cchStringMax--;
+		if (u8 >= 64)
+		{
+			c6Bits = 3;
+			break;
+		}
+		u8Trio[2] |= u8;
+		pszString++;
+		cchStringMax--;
+
+		/* flush the trio */
+		if (cbData < 3)
+			return GRUB_ERR_OUT_OF_RANGE;
+		cbData -= 3;
+		pbData[0] = u8Trio[0];
+		pbData[1] = u8Trio[1];
+		pbData[2] = u8Trio[2];
+		pbData += 3;
+	}
+
+	/*
+	 * Padding can only be found at the end and there is
+	 * only 1 or 2 padding chars. Deal with it first.
+	 */
+	unsigned cbPad = 0;
+	if (u8 == BASE64_PAD)
+	{
+		cbPad = 1;
+		pszString++;
+		cchStringMax--;
+		while ((u8 = rtBase64TranslateNext(pszString, cchStringMax)) != BASE64_NULL)
+		{
+			if (u8 != BASE64_SPACE)
+			{
+				if (u8 != BASE64_PAD)
+					break;
+				cbPad++;
+			}
+			pszString++;
+			cchStringMax--;
+		}
+		if (cbPad >= 3)
+			return GRUB_ERR_BAD_ARGUMENT;
+	}
+
+	/*
+	 * Invalid char and no where to indicate where the
+	 * Base64 text ends? Return failure.
+	 */
+	if (u8 == BASE64_INVALID
+		&& !ppszEnd)
+		return GRUB_ERR_BAD_ARGUMENT;
+
+	/*
+	 * Check padding vs. pending sextets, if anything left to do finish it off.
+	 */
+	if (c6Bits || cbPad)
+	{
+		if (c6Bits + cbPad != 4)
+			return GRUB_ERR_BAD_ARGUMENT;
+
+		switch (c6Bits)
+		{
+		case 1:
+			u8Trio[1] = u8Trio[2] = 0;
+			break;
+		case 2:
+			u8Trio[2] = 0;
+			break;
+		case 3:
+		default:
+			break;
+		}
+		switch (3 - cbPad)
+		{
+		case 1:
+			if (cbData < 1)
+				return GRUB_ERR_OUT_OF_RANGE;
+			cbData--;
+			pbData[0] = u8Trio[0];
+			pbData++;
+			break;
+
+		case 2:
+			if (cbData < 2)
+				return GRUB_ERR_OUT_OF_RANGE;
+			cbData -= 2;
+			pbData[0] = u8Trio[0];
+			pbData[1] = u8Trio[1];
+			pbData += 2;
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	/*
+	 * Set optional return values and return successfully.
+	 */
+	if (ppszEnd)
+		*ppszEnd = (char*)pszString;
+	if (pcbActual)
+		*pcbActual = pbData - (grub_uint8_t*)pvData;
+	return GRUB_ERR_NONE;
+}
+
+int RTBase64Decode(const char* pszString, void* pvData, grub_size_t cbData, grub_size_t* pcbActual, char** ppszEnd)
+{
+	return RTBase64DecodeEx(pszString, RTSTR_MAX, pvData, cbData, pcbActual, ppszEnd);
+}
+
 int
 RTZipBlockDecompress(RTZIPTYPE enmType, grub_uint32_t fFlags,
 	void const* pvSrc, grub_size_t cbSrc, grub_size_t* pcbSrcActual,
@@ -351,9 +692,9 @@ RTZipBlockDecompress(RTZIPTYPE enmType, grub_uint32_t fFlags,
 	case RTZIPTYPE_LZJB:
 	{
 #ifdef RTZIP_USE_LZJB
-		if (*(uint8_t*)pvSrc == 1)
+		if (*(grub_uint8_t*)pvSrc == 1)
 		{
-			int rc = lzjb_decompress((uint8_t*)pvSrc + 1, pvDst, cbSrc - 1, cbDst, 0 /*??*/);
+			int rc = lzjb_decompress((grub_uint8_t*)pvSrc + 1, pvDst, cbSrc - 1, cbDst, 0 /*??*/);
 			if (RT_UNLIKELY(rc != 0))
 				return VERR_GENERAL_FAILURE;
 			if (pcbDstActual)
@@ -362,7 +703,7 @@ RTZipBlockDecompress(RTZIPTYPE enmType, grub_uint32_t fFlags,
 		else
 		{
 			AssertReturn(cbDst >= cbSrc - 1, VERR_BUFFER_OVERFLOW);
-			memcpy(pvDst, (uint8_t*)pvSrc + 1, cbSrc - 1);
+			memcpy(pvDst, (grub_uint8_t*)pvSrc + 1, cbSrc - 1);
 			if (pcbDstActual)
 				*pcbDstActual = cbSrc - 1;
 		}

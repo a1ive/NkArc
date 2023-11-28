@@ -119,6 +119,7 @@ void grub_module_init_lzopio(void);
 void grub_module_init_xzio(void);
 void grub_module_init_zstd(void);
 
+void grub_module_init_dmg(void);
 void grub_module_init_qcow(void);
 void grub_module_init_vdi(void);
 void grub_module_init_vhd(void);
@@ -206,6 +207,7 @@ grub_module_init(void)
 	grub_module_init_xzio();
 	grub_module_init_zstd();
 
+	grub_module_init_dmg();
 	grub_module_init_qcow();
 	grub_module_init_vdi();
 	grub_module_init_vhd();
@@ -293,6 +295,7 @@ void grub_module_fini_lzopio(void);
 void grub_module_fini_xzio(void);
 void grub_module_fini_zstd(void);
 
+void grub_module_fini_dmg(void);
 void grub_module_fini_qcow(void);
 void grub_module_fini_vdi(void);
 void grub_module_fini_vhd(void);
@@ -380,6 +383,7 @@ grub_module_fini(void)
 	grub_module_fini_xzio();
 	grub_module_fini_zstd();
 
+	grub_module_fini_dmg();
 	grub_module_fini_qcow();
 	grub_module_fini_vdi();
 	grub_module_fini_vhd();

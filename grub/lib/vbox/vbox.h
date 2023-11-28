@@ -51,6 +51,12 @@
 #define UINT64_MAX        18446744073709551615ULL
 #endif
 
+#ifndef INT64_MIN
+#define INT64_MIN         (-9223372036854775807LL - 1)
+#endif
+
+#define RTSTR_MAX       (~(grub_size_t)0)
+
 #define RT_SUCCESS(rc) (rc == GRUB_ERR_NONE)
 #define RT_FAILURE(rc) (rc != GRUB_ERR_NONE)
 
@@ -167,6 +173,12 @@ RTUuidCompareStr(PCRTUUID pUuid1, const char* pszString2);
 
 grub_uint32_t
 RTCrc32C(const void* pv, grub_size_t cb);
+
+grub_ssize_t
+RTBase64DecodedSize(const char* pszString, char** ppszEnd);
+
+int
+RTBase64Decode(const char* pszString, void* pvData, grub_size_t cbData, grub_size_t* pcbActual, char** ppszEnd);
 
 typedef struct RTLISTNODE
 {
