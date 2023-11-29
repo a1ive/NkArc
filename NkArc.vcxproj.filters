@@ -504,6 +504,12 @@
     <ClCompile Include="grub\lib\lz4\lz4.c">
       <Filter>src\grub\lib\lz4</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\lz4\lz4frame.c">
+      <Filter>src\grub\lib\lz4</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\lz4\xxhash.c">
+      <Filter>src\grub\lib\lz4</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -911,6 +917,15 @@
       <Filter>src\grub\lib\zstd</Filter>
     </ClInclude>
     <ClInclude Include="grub\lib\lz4\lz4.h">
+      <Filter>src\grub\lib\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\lz4\lz4frame.h">
+      <Filter>src\grub\lib\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\lz4\lz4frame_static.h">
+      <Filter>src\grub\lib\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\lz4\xxhash.h">
       <Filter>src\grub\lib\lz4</Filter>
     </ClInclude>
   </ItemGroup>

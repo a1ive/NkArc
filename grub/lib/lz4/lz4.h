@@ -43,6 +43,7 @@ extern "C" {
 #include <stddef.h>   /* size_t */
 
 #include <grub/misc.h>
+#include <grub/mm.h>
 #define LZ4_memcpy grub_memcpy
 #define LZ4_memset grub_memset
 #define LZ4_memmove grub_memmove

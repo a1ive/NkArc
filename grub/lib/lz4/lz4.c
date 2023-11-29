@@ -32,6 +32,8 @@
     - LZ4 source repository : https://github.com/lz4/lz4
 */
 
+#define LZ4_HEAPMODE 1
+
 /*-************************************
 *  Tuning parameters
 **************************************/
@@ -189,6 +191,7 @@
 *  Memory routines
 **************************************/
 
+
 /*! LZ4_STATIC_LINKING_ONLY_DISABLE_MEMORY_ALLOCATION :
  *  Disable relatively high-level LZ4/HC functions that use dynamic memory
  *  allocation functions (malloc(), calloc(), free()).
@@ -204,6 +207,7 @@
  *            LZ4_createHC (deprecated), LZ4_freeHC  (deprecated)
  *  - lz4frame, lz4file : All LZ4F_* functions
  */
+#if 0
 #if defined(LZ4_STATIC_LINKING_ONLY_DISABLE_MEMORY_ALLOCATION)
 #  define ALLOC(s)          lz4_error_memory_allocation_is_disabled
 #  define ALLOC_AND_ZERO(s) lz4_error_memory_allocation_is_disabled
@@ -223,6 +227,11 @@ void  LZ4_free(void* p);
 # define ALLOC(s)          malloc(s)
 # define ALLOC_AND_ZERO(s) calloc(1,s)
 # define FREEMEM(p)        free(p)
+#endif
+#else
+# define ALLOC(s)          grub_malloc(s)
+# define ALLOC_AND_ZERO(s) grub_zalloc(s)
+# define FREEMEM(p)        grub_free(p)
 #endif
 
 #if ! LZ4_FREESTANDING

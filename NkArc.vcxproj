@@ -318,6 +318,8 @@
     <ClCompile Include="grub\lib\libgcrypt\gcry_sha1.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_sha256.c" />
     <ClCompile Include="grub\lib\lz4\lz4.c" />
+    <ClCompile Include="grub\lib\lz4\lz4frame.c" />
+    <ClCompile Include="grub\lib\lz4\xxhash.c" />
     <ClCompile Include="grub\lib\LzmaDec.c" />
     <ClCompile Include="grub\lib\minilzo\minilzo.c" />
     <ClCompile Include="grub\lib\miniz\miniz.c" />
@@ -407,6 +409,9 @@
   <ItemGroup>
     <ClInclude Include="grub\lib\libgcrypt\gcry_wrap.h" />
     <ClInclude Include="grub\lib\lz4\lz4.h" />
+    <ClInclude Include="grub\lib\lz4\lz4frame.h" />
+    <ClInclude Include="grub\lib\lz4\lz4frame_static.h" />
+    <ClInclude Include="grub\lib\lz4\xxhash.h" />
     <ClInclude Include="grub\lib\minilzo\lzoconf.h" />
     <ClInclude Include="grub\lib\minilzo\lzodefs.h" />
     <ClInclude Include="grub\lib\minilzo\minilzo.h" />
