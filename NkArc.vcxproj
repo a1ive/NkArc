@@ -317,7 +317,7 @@
     <ClCompile Include="grub\lib\LzmaDec.c" />
     <ClCompile Include="grub\lib\minilzo\minilzo.c" />
     <ClCompile Include="grub\lib\miniz\miniz.c" />
-    <ClCompile Include="grub\lib\mscompress\huffman.c" />
+    <ClCompile Include="grub\lib\mscompress\ms_huffman.c" />
     <ClCompile Include="grub\lib\mscompress\lzx.c" />
     <ClCompile Include="grub\lib\mscompress\xpress.c" />
     <ClCompile Include="grub\lib\progress.c" />

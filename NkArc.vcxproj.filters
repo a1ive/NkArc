@@ -441,7 +441,7 @@
     <ClCompile Include="lang.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="grub\lib\mscompress\huffman.c">
+    <ClCompile Include="grub\lib\mscompress\ms_huffman.c">
       <Filter>src\grub\lib\mscompress</Filter>
     </ClCompile>
     <ClCompile Include="grub\lib\mscompress\lzx.c">
