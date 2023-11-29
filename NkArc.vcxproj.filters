@@ -414,9 +414,6 @@
     <ClCompile Include="grub\fs\zip.c">
       <Filter>src\grub\fs</Filter>
     </ClCompile>
-    <ClCompile Include="grub\lib\lz4\lz4_decompress.c">
-      <Filter>src\grub\lib\lz4</Filter>
-    </ClCompile>
     <ClCompile Include="grub\fs\erofs.c">
       <Filter>src\grub\fs</Filter>
     </ClCompile>
@@ -441,7 +438,7 @@
     <ClCompile Include="lang.c">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="grub\lib\mscompress\ms_huffman.c">
+    <ClCompile Include="grub\lib\mscompress\huffman.c">
       <Filter>src\grub\lib\mscompress</Filter>
     </ClCompile>
     <ClCompile Include="grub\lib\mscompress\lzx.c">
@@ -503,6 +500,9 @@
     </ClCompile>
     <ClCompile Include="grub\io\dmg.c">
       <Filter>src\grub\io</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\lz4\lz4.c">
+      <Filter>src\grub\lib\lz4</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -835,9 +835,6 @@
     <ClInclude Include="grub\lib\miniz\miniz.h">
       <Filter>src\grub\lib\miniz</Filter>
     </ClInclude>
-    <ClInclude Include="grub\lib\lz4\lz4_decompress.h">
-      <Filter>src\grub\lib\lz4</Filter>
-    </ClInclude>
     <ClInclude Include="grub\lib\vbox\vbox.h">
       <Filter>src\grub\lib\vbox</Filter>
     </ClInclude>
@@ -912,6 +909,9 @@
     </ClInclude>
     <ClInclude Include="grub\lib\zstd\decompress\zstd_decompress_internal.h">
       <Filter>src\grub\lib\zstd</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\lz4\lz4.h">
+      <Filter>src\grub\lib\lz4</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

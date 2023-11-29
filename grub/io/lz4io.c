@@ -22,7 +22,7 @@
 #include <grub/file.h>
 #include <grub/fs.h>
 
-#include "../lib/lz4/lz4_decompress.h"
+#include "../lib/lz4/lz4.h"
 
 GRUB_MOD_LICENSE("GPLv3+");
 

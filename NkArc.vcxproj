@@ -122,6 +122,7 @@
       </AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,6 +147,7 @@
       </AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -170,6 +172,7 @@
       </AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -194,6 +197,7 @@
       </AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -313,11 +317,11 @@
     <ClCompile Include="grub\lib\libgcrypt\gcry_md5.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_sha1.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_sha256.c" />
-    <ClCompile Include="grub\lib\lz4\lz4_decompress.c" />
+    <ClCompile Include="grub\lib\lz4\lz4.c" />
     <ClCompile Include="grub\lib\LzmaDec.c" />
     <ClCompile Include="grub\lib\minilzo\minilzo.c" />
     <ClCompile Include="grub\lib\miniz\miniz.c" />
-    <ClCompile Include="grub\lib\mscompress\ms_huffman.c" />
+    <ClCompile Include="grub\lib\mscompress\huffman.c" />
     <ClCompile Include="grub\lib\mscompress\lzx.c" />
     <ClCompile Include="grub\lib\mscompress\xpress.c" />
     <ClCompile Include="grub\lib\progress.c" />
@@ -402,7 +406,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="grub\lib\libgcrypt\gcry_wrap.h" />
-    <ClInclude Include="grub\lib\lz4\lz4_decompress.h" />
+    <ClInclude Include="grub\lib\lz4\lz4.h" />
     <ClInclude Include="grub\lib\minilzo\lzoconf.h" />
     <ClInclude Include="grub\lib\minilzo\lzodefs.h" />
     <ClInclude Include="grub\lib\minilzo\minilzo.h" />

@@ -33,7 +33,7 @@
 #include "../lib/xzembed/xz.h"
 #include "../lib/xzembed/xz_stream.h"
 
-#include "../lib/lz4/lz4_decompress.h"
+#include "../lib/lz4/lz4.h"
 
 #define ZSTD_STATIC_LINKING_ONLY
 #include "../lib/zstd/zstd.h"
