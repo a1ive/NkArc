@@ -1239,11 +1239,22 @@ grub_qcow_open(grub_file_t io, enum grub_file_type type)
 static grub_ssize_t
 grub_qcow_read(grub_file_t file, char* buf, grub_size_t len)
 {
-	grub_size_t size = 0;
+	int rc = GRUB_ERR_NONE;
+	grub_size_t real_size;
+	grub_ssize_t size = 0;
 	grub_qcow_t qcowio = file->data;
 
-	int rc = qcowRead(qcowio->qcow, file->offset, buf, len, &size);
-	file->offset += size;
+	while (rc == GRUB_ERR_NONE)
+	{
+		rc = qcowRead(qcowio->qcow, file->offset, buf, len, &real_size);
+		file->offset += real_size;
+		buf += real_size;
+		size += real_size;
+		if (real_size >= len)
+			break;
+		len -= real_size;
+	}
+
 	if (rc != GRUB_ERR_NONE)
 		return -1;
 	return size;
