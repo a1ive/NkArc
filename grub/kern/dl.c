@@ -201,7 +201,7 @@ grub_module_init(void)
 	grub_module_init_zip();
 
 	grub_module_init_gzio();
-	//grub_module_init_lz4io();
+	grub_module_init_lz4io();
 	grub_module_init_lzma();
 	grub_module_init_lzopio();
 	grub_module_init_xzio();
@@ -377,7 +377,7 @@ grub_module_fini(void)
 	grub_module_fini_zip();
 
 	grub_module_fini_gzio();
-	//grub_module_fini_lz4io();
+	grub_module_fini_lz4io();
 	grub_module_fini_lzma();
 	grub_module_fini_lzopio();
 	grub_module_fini_xzio();

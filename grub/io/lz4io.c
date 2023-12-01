@@ -53,7 +53,6 @@ struct grub_lz4io
 	grub_uint64_t dict_id;
 	grub_uint64_t max_block_size;
 	grub_off_t saved_off;
-	grub_off_t start_block_off;
 	char* ubuf;
 	grub_size_t u_size;
 	char* cbuf;
@@ -70,7 +69,6 @@ read_block(grub_lz4io_t lz4io)
 	grub_uint32_t c_size;
 	int no_compress = 0;
 
-	lz4io->start_block_off = grub_file_tell(lz4io->file);
 	sz = grub_file_read(lz4io->file, &c_size, sizeof(c_size));
 	if (sz != sizeof(c_size))
 		return -1;
@@ -106,10 +104,18 @@ read_block(grub_lz4io_t lz4io)
 		grub_file_read(lz4io->file, &b_checksum, sizeof(grub_uint32_t));
 		// TODO: verify block checksum
 	}
-	lz4io->start_block_off = grub_file_tell(lz4io->file);
+
 	lz4io->saved_off += lz4io->u_size;
 
 	return 1;
+}
+
+static int
+reset_dctx(grub_lz4io_t lz4io)
+{
+	grub_file_seek(lz4io->file, lz4io->header_size);
+	lz4io->saved_off = 0;
+	return read_block(lz4io);
 }
 
 static int
@@ -171,9 +177,7 @@ test_header(grub_file_t file)
 		return 0;
 	}
 
-	grub_file_seek(lz4io->file, lz4io->header_size);
-	lz4io->saved_off = 0;
-	if (read_block(lz4io) <= 0)
+	if (reset_dctx(lz4io) <= 0)
 	{
 		grub_free(lz4io->ubuf);
 		grub_free(lz4io->cbuf);
@@ -234,47 +238,50 @@ grub_lz4io_read(grub_file_t file, char* buf, grub_size_t len)
 {
 	grub_lz4io_t lz4io = file->data;
 	grub_ssize_t ret = 0;
-	grub_off_t off = grub_file_tell(file);
+	grub_off_t off;
+	int rc;
 
-	if (off < lz4io->saved_off - lz4io->u_size)
+	if (lz4io->saved_off - lz4io->u_size > grub_file_tell(file))
 	{
-		lz4io->saved_off = 0;
-		grub_file_seek(lz4io->file, lz4io->header_size);
-		do
-		{
-			if (read_block(lz4io) <= 0)
-				goto CORRUPTED;
-		} while (off >= lz4io->saved_off - lz4io->u_size);
+		if (reset_dctx(lz4io) <= 0)
+			goto CORRUPTED;
 	}
 
-	if (off >= lz4io->saved_off - lz4io->u_size
-		&& off < lz4io->saved_off)
+	while (lz4io->saved_off <= grub_file_tell(file))
 	{
-		grub_size_t off_in_block = off - (lz4io->saved_off - lz4io->u_size);
-		grub_size_t to_copy = grub_min(len, lz4io->u_size - off_in_block);
-		grub_memcpy(buf, lz4io->ubuf + off_in_block, to_copy);
-		ret += to_copy;
-		len -= to_copy;
-		buf += to_copy;
-		off += to_copy;
-	}
-
-	if (len == 0)
-		return ret;
-
-	while (len)
-	{
-		int rc = read_block(lz4io);
+		rc = read_block(lz4io);
+		if (rc == 0)
+			return 0;
 		if (rc < 0)
 			goto CORRUPTED;
-		if (rc == 0)
-			break;
-		grub_size_t to_copy = grub_min(len, lz4io->u_size);
-		grub_memcpy(buf, lz4io->ubuf, to_copy);
-		ret += to_copy;
+	}
+
+	off = grub_file_tell(file) - (lz4io->saved_off - lz4io->u_size);
+
+	while (len != 0)
+	{
+		grub_size_t to_copy;
+
+		/* Copy requested data into buffer.  */
+		to_copy = lz4io->u_size - off;
+		if (to_copy > len)
+			to_copy = len;
+		grub_memcpy(buf, lz4io->ubuf + off, to_copy);
+
 		len -= to_copy;
 		buf += to_copy;
-		off += to_copy;
+		ret += to_copy;
+		off = 0;
+
+		/* Read next block if needed.  */
+		if (len > 0)
+		{
+			rc = read_block(lz4io);
+			if (rc == 0)
+				break;
+			if (rc < 0)
+				goto CORRUPTED;
+		}
 	}
 	
 	return ret;
