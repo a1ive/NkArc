@@ -1532,7 +1532,7 @@ grub_dmg_open(grub_file_t io, enum grub_file_type type)
 
 	if (!(type & GRUB_FILE_TYPE_FILTER_VDISK))
 		return io;
-	if (io->size < 0x10000)
+	if (io->size < 8 * sizeof(DMGUDIF) || io->size == GRUB_FILE_SIZE_UNKNOWN)
 		return io;
 
 	if (dmgOpen(io, &dmg) != GRUB_ERR_NONE)

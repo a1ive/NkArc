@@ -585,7 +585,7 @@ grub_vhd_open(grub_file_t io, enum grub_file_type type)
 
 	if (!(type & GRUB_FILE_TYPE_FILTER_VDISK))
 		return io;
-	if (io->size < 0x10000)
+	if (io->size < 8 * sizeof(VHDFooter) || io->size == GRUB_FILE_SIZE_UNKNOWN)
 		return io;
 
 	if (vhdOpen(io, &vhd) != GRUB_ERR_NONE)
