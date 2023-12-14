@@ -34,8 +34,7 @@ struct grub_zip_header
 	grub_uint16_t version;
 	grub_uint16_t flag;
 	grub_uint16_t compression_method;
-	grub_uint16_t mtime;
-	grub_uint16_t mdate;
+	grub_uint32_t mtime;
 	grub_uint32_t crc32;
 	grub_uint32_t csize;
 	grub_uint32_t usize;
@@ -290,6 +289,8 @@ grub_zip_dir(grub_disk_t disk, const char* path,
 			char* p = &data->stat.m_filename[new_path_len];
 			char* q;
 			info.dir = data->stat.m_is_directory ? 1 : 0;
+			info.mtimeset = 1;
+			info.mtime = data->stat.m_time;
 			info.inode = data->index;
 			if (*p == '/')
 				p++;
@@ -331,6 +332,18 @@ static grub_err_t grub_zip_label(grub_disk_t disk, char** label)
 	return GRUB_ERR_NONE;
 }
 
+static grub_err_t
+grub_zip_mtime(grub_disk_t disk, grub_int64_t* tm)
+{
+	struct grub_zip_header header;
+
+	*tm = 0;
+	if (grub_disk_read(disk, 0, 0, sizeof(header), &header))
+		return grub_errno;
+	*tm = grub_le_to_cpu32(header.mtime);
+	return GRUB_ERR_NONE;
+}
+
 static struct grub_fs grub_zip_fs =
 {
 	.name = "zip",
@@ -339,6 +352,7 @@ static struct grub_fs grub_zip_fs =
 	.fs_read = grub_zip_read,
 	.fs_close = grub_zip_close,
 	.fs_label = grub_zip_label,
+	.fs_mtime = grub_zip_mtime,
 	.fs_uuid = 0,
 	.next = 0
 };
