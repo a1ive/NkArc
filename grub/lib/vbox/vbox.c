@@ -37,6 +37,8 @@
 #define MINILZO_HAVE_CONFIG_H
 #include "../minilzo/minilzo.h"
 
+#include "../bzip2/bzlib.h"
+
  /** Conversion table used by the conversion functions.
   * 0xff if not a hex number, otherwise the value. */
 static const grub_uint8_t g_au8Digits[256] =

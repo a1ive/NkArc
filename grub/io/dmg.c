@@ -32,6 +32,8 @@
 #include <grub/mm.h>
 #include <grub/deflate.h>
 
+#include "../lib/bzip2/bzlib.h"
+
 #include "../lib/vbox/vbox.h"
 
 GRUB_MOD_LICENSE("GPLv3+");
@@ -274,6 +276,7 @@ typedef enum DMGEXTENTTYPE
 	DMGEXTENTTYPE_ZERO,
 	/** Compressed extent - compression method ZLIB. */
 	DMGEXTENTTYPE_COMP_ZLIB,
+	DMGEXTENTTYPE_COMP_BZIP2,
 	/** 32bit hack. */
 	DMGEXTENTTYPE_32BIT_HACK = 0x7fffffff
 } DMGEXTENTTYPE, * PDMGEXTENTTYPE;
@@ -403,7 +406,8 @@ dmgFileReadSync(PDMGIMAGE pImage, grub_uint64_t off, void* pvBuf, grub_size_t cb
  * distinguishing between async and normal operation
  */
 static int
-dmgFileInflateSync(PDMGIMAGE pImage, grub_uint64_t uOffset, grub_size_t cbToRead,
+dmgFileInflateSync(PDMGIMAGE pImage, DMGEXTENTTYPE emnType,
+	grub_uint64_t uOffset, grub_size_t cbToRead,
 	void* pvBuf, grub_size_t cbBuf)
 {
 	int rc = GRUB_ERR_BAD_COMPRESSED_DATA;
@@ -415,7 +419,34 @@ dmgFileInflateSync(PDMGIMAGE pImage, grub_uint64_t uOffset, grub_size_t cbToRead
 	dmgFileReadSync(pImage, uOffset, pbBuf, cbToRead, &cbActuallyRead);
 	if (cbActuallyRead <= 0)
 		goto fail;
-	cbActuallyRead = grub_zlib_decompress(pbBuf, cbActuallyRead, 0, pvBuf, cbBuf);
+	switch (emnType)
+	{
+	case DMGEXTENTTYPE_COMP_ZLIB:
+		cbActuallyRead = grub_zlib_decompress(pbBuf, cbActuallyRead, 0, pvBuf, cbBuf);
+		break;
+	case DMGEXTENTTYPE_COMP_BZIP2:
+	{
+		bz_stream bz = { 0 };
+		if (BZ2_bzDecompressInit(&bz, 0, 0) != BZ_OK)
+			goto fail;
+		bz.avail_in = cbActuallyRead;
+		bz.next_in = pbBuf;
+		bz.avail_out = cbBuf;
+		bz.next_out = pvBuf;
+		int err = BZ2_bzDecompress(&bz);
+		if (err != BZ_OK && err != BZ_STREAM_END)
+		{
+			BZ2_bzDecompressEnd(&bz);
+			goto fail;
+		}
+		cbActuallyRead = cbBuf;
+		BZ2_bzDecompressEnd(&bz);
+	}
+		break;
+	default:
+		rc = GRUB_ERR_NOT_IMPLEMENTED_YET;
+		goto fail;
+	}
 	if (cbActuallyRead <= 0)
 		goto fail;
 	rc = GRUB_ERR_NONE;
@@ -1150,6 +1181,8 @@ static int dmgExtentCreateFromBlkxDesc(PDMGIMAGE pThis, grub_uint64_t uSectorPar
 		enmExtentTypeNew = DMGEXTENTTYPE_ZERO;
 	else if (pBlkxDesc->u32Type == DMGBLKXDESC_TYPE_ZLIB)
 		enmExtentTypeNew = DMGEXTENTTYPE_COMP_ZLIB;
+	else if (pBlkxDesc->u32Type == DMGBLKXDESC_TYPE_BZLIB)
+		enmExtentTypeNew = DMGEXTENTTYPE_COMP_BZIP2;
 	else
 	{
 		return GRUB_ERR_NOT_IMPLEMENTED_YET;
@@ -1250,6 +1283,7 @@ static int dmgBlkxParse(PDMGIMAGE pThis, PDMGBLKX pBlkx)
 		case DMGBLKXDESC_TYPE_RAW:
 		case DMGBLKXDESC_TYPE_IGNORE:
 		case DMGBLKXDESC_TYPE_ZLIB:
+		case DMGBLKXDESC_TYPE_BZLIB:
 		{
 			rc = dmgExtentCreateFromBlkxDesc(pThis, pBlkx->cSectornumberFirst, pBlkxDesc);
 			break;
@@ -1444,6 +1478,7 @@ dmgRead(void* pBackendData, grub_uint64_t uOffset, void* pvBuf, grub_size_t cbTo
 			break;
 		}
 		case DMGEXTENTTYPE_COMP_ZLIB:
+		case DMGEXTENTTYPE_COMP_BZIP2:
 		{
 			if (pThis->pExtentDecomp != pExtent)
 			{
@@ -1461,8 +1496,8 @@ dmgRead(void* pBackendData, grub_uint64_t uOffset, void* pvBuf, grub_size_t cbTo
 
 				if (RT_SUCCESS(rc))
 				{
-					rc = dmgFileInflateSync(pThis, pExtent->offFileStart, pExtent->cbFile,
-						pThis->pvDecompExtent,
+					rc = dmgFileInflateSync(pThis, pExtent->enmType,
+						pExtent->offFileStart, pExtent->cbFile, pThis->pvDecompExtent,
 						RT_MIN(pThis->cbDecompExtent, DMG_BLOCK2BYTE(pExtent->cSectorsExtent)));
 					if (RT_SUCCESS(rc))
 						pThis->pExtentDecomp = pExtent;
