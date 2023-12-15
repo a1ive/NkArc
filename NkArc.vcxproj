@@ -308,6 +308,11 @@
     <ClCompile Include="grub\kern\partition.c" />
     <ClCompile Include="grub\kern\time.c" />
     <ClCompile Include="grub\lib\adler32.c" />
+    <ClCompile Include="grub\lib\bzip2\bzlib.c" />
+    <ClCompile Include="grub\lib\bzip2\crctable.c" />
+    <ClCompile Include="grub\lib\bzip2\decompress.c" />
+    <ClCompile Include="grub\lib\bzip2\huffman.c" />
+    <ClCompile Include="grub\lib\bzip2\randtable.c" />
     <ClCompile Include="grub\lib\charset.c" />
     <ClCompile Include="grub\lib\crc.c" />
     <ClCompile Include="grub\lib\crc64.c" />
@@ -405,6 +410,9 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="grub\lib\bzip2\bzlib.h" />
+    <ClInclude Include="grub\lib\bzip2\bzlib_private.h" />
+    <ClInclude Include="grub\lib\bzip2\bz_version.h" />
     <ClInclude Include="grub\lib\libgcrypt\gcry_wrap.h" />
     <ClInclude Include="grub\lib\lz4\lz4.h" />
     <ClInclude Include="grub\lib\minilzo\lzoconf.h" />

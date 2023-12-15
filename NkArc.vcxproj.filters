@@ -73,6 +73,9 @@
     <Filter Include="src\grub\lib\mscompress">
       <UniqueIdentifier>{75ab00ce-00c8-48a2-8beb-f84331271edc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\bzip2">
+      <UniqueIdentifier>{1481d081-ce5f-4b10-9374-bfed1f4eade7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -504,6 +507,21 @@
     <ClCompile Include="grub\lib\lz4\lz4.c">
       <Filter>src\grub\lib\lz4</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\bzip2\bzlib.c">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\bzip2\decompress.c">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\bzip2\huffman.c">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\bzip2\crctable.c">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\bzip2\randtable.c">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -912,6 +930,15 @@
     </ClInclude>
     <ClInclude Include="grub\lib\lz4\lz4.h">
       <Filter>src\grub\lib\lz4</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\bzip2\bzlib.h">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\bzip2\bzlib_private.h">
+      <Filter>src\grub\lib\bzip2</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\bzip2\bz_version.h">
+      <Filter>src\grub\lib\bzip2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
