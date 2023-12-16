@@ -62,13 +62,13 @@ nkctx_hex_fini(void)
 static void
 update_buf(int forward)
 {
-	grub_memset(m_ctx.buf, 0, HEX_VIEW_STEP);
 	if (!forward && m_ctx.offset >= HEX_VIEW_STEP)
 		m_ctx.offset -= HEX_VIEW_STEP;
 	else if (forward && m_ctx.offset + HEX_VIEW_STEP < m_ctx.size)
 		m_ctx.offset += HEX_VIEW_STEP;
 	else
 		return;
+	grub_memset(m_ctx.buf, 0, HEX_VIEW_STEP);
 	grub_file_seek(m_ctx.file, m_ctx.offset);
 	grub_file_read(m_ctx.file, m_ctx.buf, HEX_VIEW_STEP);
 }
