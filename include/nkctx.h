@@ -141,6 +141,8 @@ typedef struct _NK_GUI_CTX
 	DWORD dir_count;
 	struct nkctx_file* files;
 
+	BOOL dokan_start;
+
 	DWORD copy_size;
 	char* copy_buf;
 } NK_GUI_CTX;

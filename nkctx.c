@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <dokan.h>
 #include <nkctx.h>
 #include <resource.h>
 
@@ -67,6 +68,14 @@ nkctx_window_proc(HWND wnd, UINT msg, WPARAM wparam, LPARAM lparam)
 	{
 	case WM_DESTROY:
 		PostQuitMessage(0);
+		break;
+	case WM_TIMER:
+		switch (wparam)
+		{
+		case IDT_TIMER_1S:
+			nk.dokan_start = DokanCheckService();
+			break;
+		}
 		break;
 	case WM_DPICHANGED:
 		break;
@@ -237,6 +246,8 @@ nkctx_init(HINSTANCE inst,
 	nk.progress_wnd = CreateDialogParamW(nk.inst, MAKEINTRESOURCE(IDD_PROG_DIALOG), nk.wnd, nkctx_proc_progress, 0);
 	ShowWindow(nk.progress_wnd, SW_HIDE);
 
+	SetTimer(nk.wnd, IDT_TIMER_1S, 1000, (TIMERPROC)NULL);
+
 	grub_module_init();
 	nk.path = NULL;
 	nkctx_enum_disk();
@@ -293,6 +304,7 @@ nkctx_loop(void)
 _Noreturn void
 nkctx_fini(int code)
 {
+	KillTimer(nk.wnd, IDT_TIMER_1S);
 	for (WORD i = 0; i < ARRAY_SIZE(nk.image); i++)
 		nk_gdip_image_free(nk.image[i]);
 	nk_gdipfont_del(nk.font);

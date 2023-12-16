@@ -522,6 +522,9 @@
     <ClCompile Include="grub\lib\bzip2\randtable.c">
       <Filter>src\grub\lib\bzip2</Filter>
     </ClCompile>
+    <ClCompile Include="dokanctl.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -629,6 +632,9 @@
       <Filter>资源文件\icons</Filter>
     </Image>
     <Image Include="icons\info.png">
+      <Filter>资源文件\icons</Filter>
+    </Image>
+    <Image Include="icons\dokan.png">
       <Filter>资源文件\icons</Filter>
     </Image>
   </ItemGroup>

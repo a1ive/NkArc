@@ -213,6 +213,7 @@
   <ItemGroup>
     <ClCompile Include="about.c" />
     <ClCompile Include="disk_info.c" />
+    <ClCompile Include="dokanctl.c" />
     <ClCompile Include="enum_disk.c" />
     <ClCompile Include="enum_file.c" />
     <ClCompile Include="extract_file.c" />
@@ -375,6 +376,7 @@
     <Image Include="icons\copy.png" />
     <Image Include="icons\dir.png" />
     <Image Include="icons\doc.png" />
+    <Image Include="icons\dokan.png" />
     <Image Include="icons\empty.png" />
     <Image Include="icons\error.png" />
     <Image Include="icons\fdd.png" />

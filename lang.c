@@ -47,6 +47,8 @@ static const char* lang_en_us[LANG_STRMAX] =
 	u8"CALC",
 	u8"No decompress",
 	u8"Mount",
+	u8"Dokan Started",
+	u8"Dokan NOT Started",
 };
 
 static const wchar_t* langw_en_us[LANG_WCSMAX] =
@@ -89,6 +91,8 @@ static const char* lang_zh_cn[LANG_STRMAX] =
 	u8"计算",
 	u8"不解压",
 	u8"挂载",
+	u8"Dokan 已启动",
+	u8"Dokan 未启动",
 };
 
 static const wchar_t* langw_zh_cn[LANG_WCSMAX] =

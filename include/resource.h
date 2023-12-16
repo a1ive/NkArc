@@ -40,6 +40,10 @@
 #define IDR_PNG_VIDEO                   141
 #define IDR_PNG_WIN                     142
 
-#define IDR_PNG_MAX                     143
+#define IDR_PNG_DOKAN                   143
+
+#define IDR_PNG_MAX                     144
 
 #define IDC_PROG_TEXT                   1001
+
+#define IDT_TIMER_1S                    2001

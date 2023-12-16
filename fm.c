@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <dokan.h>
 #include <nkctx.h>
 #include <loopback.h>
 #include <lang.h>
@@ -265,7 +266,7 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	{
 		nkctx_fini(0);
 	}
-	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 5);
+	nk_layout_row_begin(ctx, NK_DYNAMIC, 0, 6);
 
 	struct nk_rect rect = nk_layout_widget_bounds(ctx);
 	nk.gui_ratio = rect.h / rect.w;
@@ -273,7 +274,7 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_UP), GET_STR(LANG_STR_UP)))
 		go_up();
-	nk_layout_row_push(ctx, 1.0f - 4 * nk.gui_ratio);
+	nk_layout_row_push(ctx, 1.0f - 5 * nk.gui_ratio);
 	nk_image_label(ctx, GET_PNG(IDR_PNG_DIR), nk.path ? nk.path : GET_STR(LANG_STR_THIS_PC), NK_TEXT_LEFT, nk.table[NK_COLOR_TEXT]);
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_REFRESH), GET_STR(LANG_STR_REFRESH_FILES)) && nk.path)
@@ -290,6 +291,18 @@ nkctx_main_window(struct nk_context* ctx, float width, float height)
 			nkctx_hide_progress();
 			free(dir);
 		}
+	}
+	nk_layout_row_push(ctx, nk.gui_ratio);
+	
+	if (nk.dokan_start)
+	{
+		nk_hb_image(ctx, GET_PNG(IDR_PNG_DOKAN), GET_STR(LANG_STR_DOKAN_STARTED));
+	}
+	else
+	{
+		nk_widget_disable_begin(ctx);
+		nk_hb_image(ctx, GET_PNG(IDR_PNG_DOKAN), GET_STR(LANG_STR_DOKAN_NOT_STARTED));
+		nk_widget_disable_end(ctx);
 	}
 	nk_layout_row_push(ctx, nk.gui_ratio);
 	if (nk_hb_image(ctx, GET_PNG(IDR_PNG_INFO), GET_STR(LANG_STR_ABOUT)))
