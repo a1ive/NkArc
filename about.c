@@ -16,6 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include <dokan.h>
 #include <nkctx.h>
 #include <lang.h>
 #include "version.h"
@@ -38,6 +39,7 @@ nkctx_about_popup(struct nk_context* ctx, float width, float height)
 	nk_label(ctx, NKGUI_COPYRIGHT, NK_TEXT_CENTERED);
 	nk_label(ctx, "v"NKGUI_VERSION_STR, NK_TEXT_CENTERED);
 	nk_label(ctx, "Build. " __DATE__ " " __TIME__, NK_TEXT_CENTERED);
+	nk_labelf(ctx, NK_TEXT_CENTERED, "Dokan v%lu", DokanVersion());
 
 	nk_label(ctx, "Supported Filesystems:", NK_TEXT_LEFT);
 	grub_fs_t fs;

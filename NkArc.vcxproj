@@ -450,6 +450,7 @@
     <ClInclude Include="grub\lib\zstd\zstd_errors.h" />
     <ClInclude Include="include\config.h" />
     <ClInclude Include="include\dl.h" />
+    <ClInclude Include="include\dokan.h" />
     <ClInclude Include="include\grub\acorn_filecore.h" />
     <ClInclude Include="include\grub\archelp.h" />
     <ClInclude Include="include\grub\bsdlabel.h" />

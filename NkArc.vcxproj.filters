@@ -940,5 +940,8 @@
     <ClInclude Include="grub\lib\bzip2\bz_version.h">
       <Filter>src\grub\lib\bzip2</Filter>
     </ClInclude>
+    <ClInclude Include="include\dokan.h">
+      <Filter>include</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -27,9 +27,11 @@
 
 #include <intrin.h>
 
+#undef ALIGN_UP
 #define ALIGN_UP(addr, align) \
 	(((addr) + (align) - 1) & ~((align) - 1))
 #define ALIGN_UP_OVERHEAD(addr, align) ((-(addr)) & ((align)-1))
+#undef ALIGN_DOWN
 #define ALIGN_DOWN(addr, align) \
 	((addr) & ~((align) - 1))
 #define ARRAY_SIZE(array) (sizeof (array) / sizeof (array[0]))
