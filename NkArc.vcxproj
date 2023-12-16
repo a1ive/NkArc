@@ -511,6 +511,11 @@
     <ClInclude Include="include\resource.h" />
     <ClInclude Include="include\version.h" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="dokan\dokan.vcxproj">
+      <Project>{f25ba22f-2ab8-4859-9b89-8fe1e774b472}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.targets" Condition="Exists('packages\YY.NuGet.Import.Helper.1.0.0.4\build\native\YY.NuGet.Import.Helper.targets')" />
