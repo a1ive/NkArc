@@ -24,7 +24,7 @@
 #include "version.h"
 
 static char*
-version_get(grub_size_t* sz)
+version_get(struct grub_procfs_entry* this, grub_size_t* sz)
 {
 	char* buf = grub_xasprintf("%s v%s\n%s", NKGUI_NAME, NKGUI_VERSION_STR, NKGUI_COPYRIGHT);
 	if (buf)
@@ -41,6 +41,7 @@ struct grub_procfs_entry version_info =
 };
 
 void grub_module_init_progress(void);
+void grub_module_init_efivars(void);
 
 void grub_module_init_procfs(void);
 void grub_module_init_diskfilter(void);
@@ -129,6 +130,7 @@ void
 grub_module_init(void)
 {
 	grub_module_init_progress();
+	grub_module_init_efivars();
 
 	grub_module_init_procfs();
 	grub_module_init_diskfilter();
@@ -217,6 +219,7 @@ grub_module_init(void)
 }
 
 void grub_module_fini_progress(void);
+void grub_module_fini_efivars(void);
 
 void grub_module_fini_procfs(void);
 void grub_module_fini_diskfilter(void);
@@ -305,6 +308,7 @@ void
 grub_module_fini(void)
 {
 	grub_module_fini_progress();
+	grub_module_fini_efivars();
 
 	grub_module_fini_procfs();
 	grub_module_fini_diskfilter();

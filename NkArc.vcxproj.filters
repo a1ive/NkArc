@@ -522,6 +522,12 @@
     <ClCompile Include="grub\lib\bzip2\randtable.c">
       <Filter>src\grub\lib\bzip2</Filter>
     </ClCompile>
+    <ClCompile Include="grub\fs\uefi.c">
+      <Filter>src\grub\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\kern\efi.c">
+      <Filter>src\grub\kern</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -939,6 +945,9 @@
     </ClInclude>
     <ClInclude Include="grub\lib\bzip2\bz_version.h">
       <Filter>src\grub\lib\bzip2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\grub\efi.h">
+      <Filter>include\grub</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -274,6 +274,7 @@
     <ClCompile Include="grub\fs\squash4.c" />
     <ClCompile Include="grub\fs\tar.c" />
     <ClCompile Include="grub\fs\udf.c" />
+    <ClCompile Include="grub\fs\uefi.c" />
     <ClCompile Include="grub\fs\ufs.c" />
     <ClCompile Include="grub\fs\ufs2.c" />
     <ClCompile Include="grub\fs\ufs_be.c" />
@@ -299,6 +300,7 @@
     <ClCompile Include="grub\io\zstd.c" />
     <ClCompile Include="grub\kern\disk.c" />
     <ClCompile Include="grub\kern\dl.c" />
+    <ClCompile Include="grub\kern\efi.c" />
     <ClCompile Include="grub\kern\err.c" />
     <ClCompile Include="grub\kern\file.c" />
     <ClCompile Include="grub\kern\fs.c" />
@@ -460,6 +462,7 @@
     <ClInclude Include="include\grub\deflate.h" />
     <ClInclude Include="include\grub\disk.h" />
     <ClInclude Include="include\grub\diskfilter.h" />
+    <ClInclude Include="include\grub\efi.h" />
     <ClInclude Include="include\grub\err.h" />
     <ClInclude Include="include\grub\exfat.h" />
     <ClInclude Include="include\grub\fat.h" />

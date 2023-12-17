@@ -161,22 +161,23 @@ grub_procfs_open(struct grub_file* file, const char* path)
 	err = grub_archelp_open(&data, &arcops, path);
 	if (err)
 		return err;
-	file->data = data.entry->get_contents(&sz);
+	file->data = data.entry->get_contents(data.entry, &sz);
 	if (!file->data)
 		return grub_errno;
 	file->size = sz;
 	return GRUB_ERR_NONE;
 }
 
-static struct grub_disk_dev grub_procfs_dev = {
-  .name = "proc",
-  .id = GRUB_DISK_DEVICE_PROCFS_ID,
-  .disk_iterate = grub_procdev_iterate,
-  .disk_open = grub_procdev_open,
-  .disk_close = grub_procdev_close,
-  .disk_read = grub_procdev_read,
-  .disk_write = grub_procdev_write,
-  .next = 0
+static struct grub_disk_dev grub_procfs_dev =
+{
+	.name = "proc",
+	.id = GRUB_DISK_DEVICE_PROCFS_ID,
+	.disk_iterate = grub_procdev_iterate,
+	.disk_open = grub_procdev_open,
+	.disk_close = grub_procdev_close,
+	.disk_read = grub_procdev_read,
+	.disk_write = grub_procdev_write,
+	.next = 0
 };
 
 static struct grub_fs grub_procfs_fs =

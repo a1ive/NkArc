@@ -18,12 +18,31 @@
 
 #include <nkctx.h>
 
+static DWORD
+obtain_privileges(LPWSTR privilege)
+{
+	HANDLE hToken;
+	TOKEN_PRIVILEGES tkp = { 0 };
+	BOOL res;
+	// Obtain required privileges
+	if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
+		return GetLastError();
+	res = LookupPrivilegeValueW(NULL, privilege, &tkp.Privileges[0].Luid);
+	if (!res)
+		return GetLastError();
+	tkp.PrivilegeCount = 1;
+	tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
+	AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES)NULL, 0);
+	return GetLastError();
+}
+
 int APIENTRY
 wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance,
 	_In_ LPWSTR lpCmdLine,
 	_In_ int nCmdShow)
 {
+	obtain_privileges(SE_SYSTEM_ENVIRONMENT_NAME);
 	nkctx_init(hInstance,
 		100, 100, 900, 600,
 		L"NkWindowClass", L"Demo",
