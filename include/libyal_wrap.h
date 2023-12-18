@@ -10,6 +10,13 @@ typedef grub_uint16_t uint16_t;
 typedef grub_uint32_t uint32_t;
 typedef grub_uint64_t uint64_t;
 
+typedef grub_int8_t int8_t;
+typedef grub_int16_t int16_t;
+typedef grub_int32_t int32_t;
+typedef grub_int64_t int64_t;
+
+typedef grub_ssize_t ssize_t;
+typedef grub_size_t size_t;
 typedef grub_uint64_t size64_t;
 
 #define _BYTE_STREAM_HOST_IS_ENDIAN_BIG		( *((uint32_t *) "\x01\x02\x03\x04" ) == 0x01020304 )
@@ -220,6 +227,7 @@ typedef grub_uint64_t size64_t;
 
 #define SSIZE_MAX GRUB_SSIZE_MAX
 #define INT_MAX GRUB_INT_MAX
+#define INT32_MAX GRUB_INT32_MAX
 #define INT64_MAX 9223372036854775807LL
 
 #define libcerror_error_set(...)

@@ -82,6 +82,9 @@
     <Filter Include="src\grub\lib\libuna">
       <UniqueIdentifier>{05cb491b-7314-4e9e-b663-624525b483c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfmos">
+      <UniqueIdentifier>{2677ab3e-8e55-4e3e-8a37-122023ad334f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -750,6 +753,24 @@
     <ClCompile Include="grub\lib\libuna\libuna_utf32_string.c">
       <Filter>src\grub\lib\libuna</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\libfmos\libfmos_adc.c">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfmos\libfmos_lzfse.c">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfmos\libfmos_lzfse_bit_stream.c">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfmos\libfmos_lzfse_decoder.c">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfmos\libfmos_lzvn.c">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfmos\libfmos_support.c">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -1413,6 +1434,33 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libuna\libuna_utf32_string.h">
       <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_adc.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_definitions.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_extern.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_lzfse.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_lzfse_bit_stream.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_lzfse_decoder.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_lzvn.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_support.h">
+      <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfmos\libfmos_unused.h">
+      <Filter>src\grub\lib\libfmos</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
