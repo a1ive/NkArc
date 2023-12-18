@@ -329,6 +329,10 @@
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list_value.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_tree_node.c" />
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_narrow_split_string.c" />
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_narrow_string.c" />
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_wide_split_string.c" />
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_wide_string.c" />
     <ClCompile Include="grub\lib\libfcache\libfcache_cache.c" />
     <ClCompile Include="grub\lib\libfcache\libfcache_cache_value.c" />
     <ClCompile Include="grub\lib\libfcache\libfcache_date_time.c" />
@@ -524,6 +528,14 @@
     <ClInclude Include="grub\lib\libcdata\libcdata_tree_node.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_types.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_unused.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_definitions.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_extern.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_narrow_split_string.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_narrow_string.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_types.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_unused.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_wide_split_string.h" />
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_wide_string.h" />
     <ClInclude Include="grub\lib\libfcache\libfcache_cache.h" />
     <ClInclude Include="grub\lib\libfcache\libfcache_cache_value.h" />
     <ClInclude Include="grub\lib\libfcache\libfcache_date_time.h" />

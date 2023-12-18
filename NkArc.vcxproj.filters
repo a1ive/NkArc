@@ -97,6 +97,9 @@
     <Filter Include="src\grub\lib\libfdatetime">
       <UniqueIdentifier>{2c12742f-c3b8-4327-9d03-1135f230abab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libcsplit">
+      <UniqueIdentifier>{15a27b12-91d1-4a63-8a71-504dd4e2d7ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -836,6 +839,18 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfdatetime\libfdatetime_systemtime.c">
       <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_narrow_split_string.c">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_narrow_string.c">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_wide_split_string.c">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcsplit\libcsplit_wide_string.c">
+      <Filter>src\grub\lib\libcsplit</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1638,6 +1653,30 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfdatetime\libfdatetime_unused.h">
       <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_definitions.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_extern.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_narrow_split_string.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_narrow_string.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_types.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_unused.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_wide_split_string.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcsplit\libcsplit_wide_string.h">
+      <Filter>src\grub\lib\libcsplit</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

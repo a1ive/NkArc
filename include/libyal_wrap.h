@@ -257,3 +257,9 @@ typedef grub_off_t off64_t;
 #ifndef SEEK_SET
 #define SEEK_SET    0
 #endif
+
+#define narrow_string_allocate( size ) \
+	(char *) memory_allocate( sizeof( char ) * ( size ) )
+
+#define narrow_string_reallocate( string, size ) \
+	(char *) memory_reallocate( string, ( sizeof( char ) * ( size ) ) )
