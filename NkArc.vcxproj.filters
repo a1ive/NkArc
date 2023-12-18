@@ -94,6 +94,9 @@
     <Filter Include="src\grub\lib\libfdata">
       <UniqueIdentifier>{34ab2c3e-c588-4272-afda-775c36993410}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfdatetime">
+      <UniqueIdentifier>{2c12742f-c3b8-4327-9d03-1135f230abab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -812,6 +815,27 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfdata\libfdata_vector.c">
       <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_date_time_values.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_fat_date_time.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_filetime.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_hfs_time.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_nsf_timedate.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_posix_time.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdatetime\libfdatetime_systemtime.c">
+      <Filter>src\grub\lib\libfdatetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1581,6 +1605,39 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfdata\libfdata_vector.h">
       <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_date_time_values.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_definitions.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_extern.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_fat_date_time.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_filetime.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_hfs_time.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_nsf_timedate.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_posix_time.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_systemtime.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_types.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdatetime\libfdatetime_unused.h">
+      <Filter>src\grub\lib\libfdatetime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

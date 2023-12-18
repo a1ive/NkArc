@@ -233,6 +233,7 @@ typedef grub_off_t off64_t;
 #define INT64_MAX 9223372036854775807LL
 
 #define libcerror_error_set(...)
+#define libcerror_error_free(x)
 #define libcerror_error_t int
 
 #define memory_allocate(x) grub_malloc(x)
