@@ -359,6 +359,7 @@
     <ClCompile Include="grub\lib\libfmos\libfmos_lzfse_bit_stream.c" />
     <ClCompile Include="grub\lib\libfmos\libfmos_lzfse_decoder.c" />
     <ClCompile Include="grub\lib\libfmos\libfmos_lzvn.c" />
+    <ClCompile Include="grub\lib\libfusn\libfusn_record.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_crc.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_md5.c" />
     <ClCompile Include="grub\lib\libgcrypt\gcry_sha1.c" />
@@ -584,6 +585,15 @@
     <ClInclude Include="grub\lib\libfmos\libfmos_lzfse_decoder.h" />
     <ClInclude Include="grub\lib\libfmos\libfmos_lzvn.h" />
     <ClInclude Include="grub\lib\libfmos\libfmos_unused.h" />
+    <ClInclude Include="grub\lib\libfusn\fusn_record.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_definitions.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_extern.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_libfdatetime.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_libfguid.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_libuna.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_record.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_types.h" />
+    <ClInclude Include="grub\lib\libfusn\libfusn_unused.h" />
     <ClInclude Include="grub\lib\libgcrypt\gcry_wrap.h" />
     <ClInclude Include="grub\lib\libuna\libuna_base16_stream.h" />
     <ClInclude Include="grub\lib\libuna\libuna_base32_stream.h" />

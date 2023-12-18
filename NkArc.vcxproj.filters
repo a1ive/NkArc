@@ -100,6 +100,9 @@
     <Filter Include="src\grub\lib\libcsplit">
       <UniqueIdentifier>{15a27b12-91d1-4a63-8a71-504dd4e2d7ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfusn">
+      <UniqueIdentifier>{287b8312-cdc3-411a-996e-9b72e577ba14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -851,6 +854,9 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libcsplit\libcsplit_wide_string.c">
       <Filter>src\grub\lib\libcsplit</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfusn\libfusn_record.c">
+      <Filter>src\grub\lib\libfusn</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1677,6 +1683,33 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libcsplit\libcsplit_wide_string.h">
       <Filter>src\grub\lib\libcsplit</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\fusn_record.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_definitions.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_extern.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_libfdatetime.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_libfguid.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_libuna.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_record.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_types.h">
+      <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfusn\libfusn_unused.h">
+      <Filter>src\grub\lib\libfusn</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
