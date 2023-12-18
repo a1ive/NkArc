@@ -91,6 +91,9 @@
     <Filter Include="src\grub\lib\libfcache">
       <UniqueIdentifier>{b4b19287-a002-4001-856c-9d57e5ec314b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfdata">
+      <UniqueIdentifier>{34ab2c3e-c588-4272-afda-775c36993410}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -779,6 +782,36 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfcache\libfcache_date_time.c">
       <Filter>src\grub\lib\libfcache</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_area.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_cache.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_list.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_list_element.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_mapped_range.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_range.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_range_list.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_segments_array.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_stream.c">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfdata\libfdata_vector.c">
+      <Filter>src\grub\lib\libfdata</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1500,6 +1533,54 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfcache\libfcache_unused.h">
       <Filter>src\grub\lib\libfcache</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_area.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_cache.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_definitions.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_extern.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_libcdata.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_libfcache.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_list.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_list_element.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_mapped_range.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_range.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_range_list.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_segments_array.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_stream.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_types.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_unused.h">
+      <Filter>src\grub\lib\libfdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfdata\libfdata_vector.h">
+      <Filter>src\grub\lib\libfdata</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

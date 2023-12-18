@@ -246,3 +246,13 @@ typedef grub_off_t off64_t;
 #define memory_set(x, y, z) grub_memset(x, y, z)
 
 #define memory_free(x) grub_free(x)
+
+#ifndef SEEK_CUR
+#define SEEK_CUR    1
+#endif
+#ifndef SEEK_END
+#define SEEK_END    2
+#endif
+#ifndef SEEK_SET
+#define SEEK_SET    0
+#endif
