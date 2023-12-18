@@ -561,9 +561,6 @@
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list_value.c">
       <Filter>src\grub\lib\libcdata</Filter>
     </ClCompile>
-    <ClCompile Include="grub\lib\libcdata\libcdata_support.c">
-      <Filter>src\grub\lib\libcdata</Filter>
-    </ClCompile>
     <ClCompile Include="grub\lib\libcdata\libcdata_tree_node.c">
       <Filter>src\grub\lib\libcdata</Filter>
     </ClCompile>
@@ -723,9 +720,6 @@
     <ClCompile Include="grub\lib\libuna\libuna_scsu.c">
       <Filter>src\grub\lib\libuna</Filter>
     </ClCompile>
-    <ClCompile Include="grub\lib\libuna\libuna_support.c">
-      <Filter>src\grub\lib\libuna</Filter>
-    </ClCompile>
     <ClCompile Include="grub\lib\libuna\libuna_unicode_character.c">
       <Filter>src\grub\lib\libuna</Filter>
     </ClCompile>
@@ -766,9 +760,6 @@
       <Filter>src\grub\lib\libfmos</Filter>
     </ClCompile>
     <ClCompile Include="grub\lib\libfmos\libfmos_lzvn.c">
-      <Filter>src\grub\lib\libfmos</Filter>
-    </ClCompile>
-    <ClCompile Include="grub\lib\libfmos\libfmos_support.c">
       <Filter>src\grub\lib\libfmos</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1225,9 +1216,6 @@
     <ClInclude Include="grub\lib\libcdata\libcdata_range_list_value.h">
       <Filter>src\grub\lib\libcdata</Filter>
     </ClInclude>
-    <ClInclude Include="grub\lib\libcdata\libcdata_support.h">
-      <Filter>src\grub\lib\libcdata</Filter>
-    </ClInclude>
     <ClInclude Include="grub\lib\libcdata\libcdata_tree_node.h">
       <Filter>src\grub\lib\libcdata</Filter>
     </ClInclude>
@@ -1399,9 +1387,6 @@
     <ClInclude Include="grub\lib\libuna\libuna_scsu.h">
       <Filter>src\grub\lib\libuna</Filter>
     </ClInclude>
-    <ClInclude Include="grub\lib\libuna\libuna_support.h">
-      <Filter>src\grub\lib\libuna</Filter>
-    </ClInclude>
     <ClInclude Include="grub\lib\libuna\libuna_types.h">
       <Filter>src\grub\lib\libuna</Filter>
     </ClInclude>
@@ -1454,9 +1439,6 @@
       <Filter>src\grub\lib\libfmos</Filter>
     </ClInclude>
     <ClInclude Include="grub\lib\libfmos\libfmos_lzvn.h">
-      <Filter>src\grub\lib\libfmos</Filter>
-    </ClInclude>
-    <ClInclude Include="grub\lib\libfmos\libfmos_support.h">
       <Filter>src\grub\lib\libfmos</Filter>
     </ClInclude>
     <ClInclude Include="grub\lib\libfmos\libfmos_unused.h">
