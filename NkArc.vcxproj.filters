@@ -85,6 +85,9 @@
     <Filter Include="src\grub\lib\libfmos">
       <UniqueIdentifier>{2677ab3e-8e55-4e3e-8a37-122023ad334f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfguid">
+      <UniqueIdentifier>{272dc7c6-0162-404e-8502-3d3fb0214c61}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -761,6 +764,9 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfmos\libfmos_lzvn.c">
       <Filter>src\grub\lib\libfmos</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfguid\libfguid_identifier.c">
+      <Filter>src\grub\lib\libfguid</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1443,6 +1449,21 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfmos\libfmos_unused.h">
       <Filter>src\grub\lib\libfmos</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfguid\libfguid_definitions.h">
+      <Filter>src\grub\lib\libfguid</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfguid\libfguid_extern.h">
+      <Filter>src\grub\lib\libfguid</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfguid\libfguid_identifier.h">
+      <Filter>src\grub\lib\libfguid</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfguid\libfguid_types.h">
+      <Filter>src\grub\lib\libfguid</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfguid\libfguid_unused.h">
+      <Filter>src\grub\lib\libfguid</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

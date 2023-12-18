@@ -329,6 +329,7 @@
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list_value.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_tree_node.c" />
+    <ClCompile Include="grub\lib\libfguid\libfguid_identifier.c" />
     <ClCompile Include="grub\lib\libfmos\libfmos_adc.c" />
     <ClCompile Include="grub\lib\libfmos\libfmos_lzfse.c" />
     <ClCompile Include="grub\lib\libfmos\libfmos_lzfse_bit_stream.c" />
@@ -503,6 +504,11 @@
     <ClInclude Include="grub\lib\libcdata\libcdata_tree_node.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_types.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_unused.h" />
+    <ClInclude Include="grub\lib\libfguid\libfguid_definitions.h" />
+    <ClInclude Include="grub\lib\libfguid\libfguid_extern.h" />
+    <ClInclude Include="grub\lib\libfguid\libfguid_identifier.h" />
+    <ClInclude Include="grub\lib\libfguid\libfguid_types.h" />
+    <ClInclude Include="grub\lib\libfguid\libfguid_unused.h" />
     <ClInclude Include="grub\lib\libfmos\libfmos_adc.h" />
     <ClInclude Include="grub\lib\libfmos\libfmos_definitions.h" />
     <ClInclude Include="grub\lib\libfmos\libfmos_extern.h" />
