@@ -103,6 +103,9 @@
     <Filter Include="src\grub\lib\libfusn">
       <UniqueIdentifier>{287b8312-cdc3-411a-996e-9b72e577ba14}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfwnt">
+      <UniqueIdentifier>{94a92cf2-38cc-491b-b0f7-fc8def77bd9c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -857,6 +860,36 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfusn\libfusn_record.c">
       <Filter>src\grub\lib\libfusn</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_access_control_entry.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_access_control_list.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_bit_stream.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_huffman_tree.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_locale_identifier.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_lznt1.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_lzx.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_lzxpress.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_security_descriptor.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfwnt\libfwnt_security_identifier.c">
+      <Filter>src\grub\lib\libfwnt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1710,6 +1743,51 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfusn\libfusn_unused.h">
       <Filter>src\grub\lib\libfusn</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_access_control_entry.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_access_control_list.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_bit_stream.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_definitions.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_extern.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_huffman_tree.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_libcdata.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_locale_identifier.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_lznt1.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_lzx.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_lzxpress.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_security_descriptor.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_security_identifier.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_types.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfwnt\libfwnt_unused.h">
+      <Filter>src\grub\lib\libfwnt</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
