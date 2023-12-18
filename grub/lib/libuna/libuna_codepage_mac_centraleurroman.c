@@ -1,0 +1,317 @@
+/*
+ * MacCentralEurRoman codepage functions
+ *
+ * Copyright (C) 2008-2023, Joachim Metz <joachim.metz@gmail.com>
+ *
+ * Refer to AUTHORS for acknowledgements.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Lesser General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+#include <libyal_wrap.h>
+
+#include "libuna_codepage_mac_centraleurroman.h"
+#include "libuna_types.h"
+
+/* Extended ASCII to Unicode character lookup table for the MacCentralEurRoman codepage
+ * Unknown are filled with the Unicode replacement character 0xfffd
+ */
+const uint16_t libuna_codepage_mac_centraleurroman_byte_stream_to_unicode_base_0x80[ 128 ] = {
+	0x00c4, 0x0100, 0x0101, 0x00c9, 0x0104, 0x00d6, 0x00dc, 0x00e1,
+	0x0105, 0x010c, 0x00e4, 0x010d, 0x0106, 0x0107, 0x00e9, 0x0179,
+	0x017a, 0x010e, 0x00ed, 0x010f, 0x0112, 0x0113, 0x0116, 0x00f3,
+	0x0117, 0x00f4, 0x00f6, 0x00f5, 0x00fa, 0x011a, 0x011b, 0x00fc,
+	0x2020, 0x00b0, 0x0118, 0x00a3, 0x00a7, 0x2022, 0x00b6, 0x00df,
+	0x00ae, 0x00a9, 0x2122, 0x0119, 0x00a8, 0x2260, 0x0123, 0x012e,
+	0x012f, 0x012a, 0x2264, 0x2265, 0x012b, 0x0136, 0x2202, 0x2211,
+	0x0142, 0x013b, 0x013c, 0x013d, 0x013e, 0x0139, 0x013a, 0x0145,
+	0x0146, 0x0143, 0x00ac, 0x221a, 0x0144, 0x0147, 0x2206, 0x00ab,
+	0x00bb, 0x2026, 0x00a0, 0x0148, 0x0150, 0x00d5, 0x0151, 0x014c,
+	0x2013, 0x2014, 0x201c, 0x201d, 0x2018, 0x2019, 0x00f7, 0x25ca,
+	0x014d, 0x0154, 0x0155, 0x0158, 0x2039, 0x203a, 0x0159, 0x0156,
+	0x0157, 0x0160, 0x201a, 0x201e, 0x0161, 0x015a, 0x015b, 0x00c1,
+	0x0164, 0x0165, 0x00cd, 0x017d, 0x017e, 0x016a, 0x00d3, 0x00d4,
+	0x016b, 0x016e, 0x00da, 0x016f, 0x0170, 0x0171, 0x0172, 0x0173,
+	0x00dd, 0x00fd, 0x0137, 0x017b, 0x0141, 0x017c, 0x0122, 0x02c7
+};
+
+/* Unicode to ASCII character lookup tables for the MacCentralEurRoman codepage
+ * Unknown are filled with the ASCII replacement character 0x1a
+ */
+const uint8_t libuna_codepage_mac_centraleurroman_unicode_to_byte_stream_base_0x00a0[ 224 ] = {
+	0xca, 0x1a, 0x1a, 0xa3, 0x1a, 0x1a, 0x1a, 0xa4,
+	0xac, 0xa9, 0x1a, 0xc7, 0xc2, 0x1a, 0xa8, 0x1a,
+	0xa1, 0x1a, 0x1a, 0x1a, 0x1a, 0x1a, 0xa6, 0x1a,
+	0x1a, 0x1a, 0x1a, 0xc8, 0x1a, 0x1a, 0x1a, 0x1a,
+	0x1a, 0xe7, 0x1a, 0x1a, 0x80, 0x1a, 0x1a, 0x1a,
+	0x1a, 0x83, 0x1a, 0x1a, 0x1a, 0xea, 0x1a, 0x1a,
+	0x1a, 0x1a, 0x1a, 0xee, 0xef, 0xcd, 0x85, 0x1a,
+	0x1a, 0x1a, 0xf2, 0x1a, 0x86, 0xf8, 0x1a, 0xa7,
+	0x1a, 0x87, 0x1a, 0x1a, 0x8a, 0x1a, 0x1a, 0x1a,
+	0x1a, 0x8e, 0x1a, 0x1a, 0x1a, 0x92, 0x1a, 0x1a,
+	0x1a, 0x1a, 0x1a, 0x97, 0x99, 0x9b, 0x9a, 0xd6,
+	0x1a, 0x1a, 0x9c, 0x1a, 0x9f, 0xf9, 0x1a, 0x1a,
+	0x81, 0x82, 0x1a, 0x1a, 0x84, 0x88, 0x8c, 0x8d,
+	0x1a, 0x1a, 0x1a, 0x1a, 0x89, 0x8b, 0x91, 0x93,
+	0x1a, 0x1a, 0x94, 0x95, 0x1a, 0x1a, 0x96, 0x98,
+	0xa2, 0xab, 0x9d, 0x9e, 0x1a, 0x1a, 0x1a, 0x1a,
+	0x1a, 0x1a, 0xfe, 0xae, 0x1a, 0x1a, 0x1a, 0x1a,
+	0x1a, 0x1a, 0xb1, 0xb4, 0x1a, 0x1a, 0xaf, 0xb0,
+	0x1a, 0x1a, 0x1a, 0x1a, 0x1a, 0x1a, 0xb5, 0xfa,
+	0x1a, 0xbd, 0xbe, 0xb9, 0xba, 0xbb, 0xbc, 0x1a,
+	0x1a, 0xfc, 0xb8, 0xc1, 0xc4, 0xbf, 0xc0, 0xc5,
+	0xcb, 0x1a, 0x1a, 0x1a, 0xcf, 0xd8, 0x1a, 0x1a,
+	0xcc, 0xce, 0x1a, 0x1a, 0xd9, 0xda, 0xdf, 0xe0,
+	0xdb, 0xde, 0xe5, 0xe6, 0x1a, 0x1a, 0x1a, 0x1a,
+	0xe1, 0xe4, 0x1a, 0x1a, 0xe8, 0xe9, 0x1a, 0x1a,
+	0x1a, 0x1a, 0xed, 0xf0, 0x1a, 0x1a, 0xf1, 0xf3,
+	0xf4, 0xf5, 0xf6, 0xf7, 0x1a, 0x1a, 0x1a, 0x1a,
+	0x1a, 0x8f, 0x90, 0xfb, 0xfd, 0xeb, 0xec, 0x1a
+};
+
+const uint8_t libuna_codepage_mac_centraleurroman_unicode_to_byte_stream_base_0x2010[ 24 ] = {
+	0x1a, 0x1a, 0x1a, 0xd0, 0xd1, 0x1a, 0x1a, 0x1a,
+	0xd4, 0xd5, 0xe2, 0x1a, 0xd2, 0xd3, 0xe3, 0x1a,
+	0xa0, 0x1a, 0xa5, 0x1a, 0x1a, 0x1a, 0xc9, 0x1a
+};
+
+/* Copies an Unicode character from a MacCentralEurRoman encoded byte stream
+ * Returns 1 if successful or -1 on error
+ */
+int libuna_codepage_mac_centraleurroman_copy_from_byte_stream(
+     libuna_unicode_character_t *unicode_character,
+     const uint8_t *byte_stream,
+     size_t byte_stream_size,
+     size_t *byte_stream_index,
+     libcerror_error_t **error )
+{
+	static char *function                             = "libuna_codepage_mac_centraleurroman_copy_from_byte_stream";
+	libuna_unicode_character_t safe_unicode_character = 0xfffd;
+	size_t safe_byte_stream_index                     = 0;
+	uint8_t byte_stream_character                     = 0;
+
+	if( unicode_character == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid Unicode character.",
+		 function );
+
+		return( -1 );
+	}
+	if( byte_stream == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid byte stream.",
+		 function );
+
+		return( -1 );
+	}
+	if( byte_stream_size > (size_t) SSIZE_MAX )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_VALUE_EXCEEDS_MAXIMUM,
+		 "%s: invalid byte stream size value exceeds maximum.",
+		 function );
+
+		return( -1 );
+	}
+	if( byte_stream_index == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid byte stream index.",
+		 function );
+
+		return( -1 );
+	}
+	safe_byte_stream_index = *byte_stream_index;
+
+	if( safe_byte_stream_index >= byte_stream_size )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_VALUE_TOO_SMALL,
+		 "%s: byte stream too small.",
+		 function );
+
+		return( -1 );
+	}
+	byte_stream_character = byte_stream[ safe_byte_stream_index++ ];
+
+	if( byte_stream_character < 0x80 )
+	{
+		safe_unicode_character = byte_stream_character;
+	}
+	else
+	{
+		byte_stream_character -= 0x80;
+
+		safe_unicode_character = libuna_codepage_mac_centraleurroman_byte_stream_to_unicode_base_0x80[ byte_stream_character ];
+	}
+	*unicode_character = safe_unicode_character;
+	*byte_stream_index = safe_byte_stream_index;
+
+	return( 1 );
+}
+
+/* Copies an Unicode character to a MacCentralEurRoman encoded byte stream
+ * Returns 1 if successful or -1 on error
+ */
+int libuna_codepage_mac_centraleurroman_copy_to_byte_stream(
+     libuna_unicode_character_t unicode_character,
+     uint8_t *byte_stream,
+     size_t byte_stream_size,
+     size_t *byte_stream_index,
+     libcerror_error_t **error )
+{
+	static char *function         = "libuna_codepage_mac_centraleurroman_copy_to_byte_stream";
+	size_t safe_byte_stream_index = 0;
+	uint16_t byte_stream_value    = 0x001a;
+
+	if( byte_stream == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid byte stream.",
+		 function );
+
+		return( -1 );
+	}
+	if( byte_stream_size > (size_t) SSIZE_MAX )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_VALUE_EXCEEDS_MAXIMUM,
+		 "%s: invalid byte stream size value exceeds maximum.",
+		 function );
+
+		return( -1 );
+	}
+	if( byte_stream_index == NULL )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_INVALID_VALUE,
+		 "%s: invalid byte stream index.",
+		 function );
+
+		return( -1 );
+	}
+	safe_byte_stream_index = *byte_stream_index;
+
+	if( safe_byte_stream_index >= byte_stream_size )
+	{
+		libcerror_error_set(
+		 error,
+		 LIBCERROR_ERROR_DOMAIN_ARGUMENTS,
+		 LIBCERROR_ARGUMENT_ERROR_VALUE_TOO_SMALL,
+		 "%s: byte stream too small.",
+		 function );
+
+		return( -1 );
+	}
+	if( unicode_character < 0x0080 )
+	{
+		byte_stream_value = (uint16_t) unicode_character;
+	}
+	else if( ( unicode_character >= 0x00a0 )
+	      && ( unicode_character < 0x0180 ) )
+	{
+		unicode_character -= 0x00a0;
+
+		byte_stream_value = libuna_codepage_mac_centraleurroman_unicode_to_byte_stream_base_0x00a0[ unicode_character ];
+	}
+	else if( ( unicode_character >= 0x2010 )
+	      && ( unicode_character < 0x2028 ) )
+	{
+		unicode_character -= 0x2010;
+
+		byte_stream_value = libuna_codepage_mac_centraleurroman_unicode_to_byte_stream_base_0x2010[ unicode_character ];
+	}
+	else switch( unicode_character )
+	{
+		case 0x02c7:
+			byte_stream_value = 0xff;
+			break;
+
+		case 0x2039:
+			byte_stream_value = 0xdc;
+			break;
+
+		case 0x203a:
+			byte_stream_value = 0xdd;
+			break;
+
+		case 0x2122:
+			byte_stream_value = 0xaa;
+			break;
+
+		case 0x2202:
+			byte_stream_value = 0xb6;
+			break;
+
+		case 0x2206:
+			byte_stream_value = 0xc6;
+			break;
+
+		case 0x2211:
+			byte_stream_value = 0xb7;
+			break;
+
+		case 0x221a:
+			byte_stream_value = 0xc3;
+			break;
+
+		case 0x2260:
+			byte_stream_value = 0xad;
+			break;
+
+		case 0x2264:
+			byte_stream_value = 0xb2;
+			break;
+
+		case 0x2265:
+			byte_stream_value = 0xb3;
+			break;
+
+		case 0x25ca:
+			byte_stream_value = 0xd7;
+			break;
+
+		default:
+			byte_stream_value = 0x1a;
+			break;
+	}
+	byte_stream[ safe_byte_stream_index++ ] = (uint8_t) ( byte_stream_value & 0x00ff );
+
+	*byte_stream_index = safe_byte_stream_index;
+
+	return( 1 );
+}
+

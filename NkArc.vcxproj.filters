@@ -76,6 +76,12 @@
     <Filter Include="src\grub\lib\bzip2">
       <UniqueIdentifier>{1481d081-ce5f-4b10-9374-bfed1f4eade7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libcdata">
+      <UniqueIdentifier>{f6b67ad8-2a5a-4aa9-8546-343e73b3ba79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\grub\lib\libuna">
+      <UniqueIdentifier>{05cb491b-7314-4e9e-b663-624525b483c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -528,6 +534,222 @@
     <ClCompile Include="grub\kern\efi.c">
       <Filter>src\grub\kern</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_array.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_btree.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_btree_node.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_btree_values_list.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_list.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_list_element.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_range_list.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_range_list_value.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_support.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcdata\libcdata_tree_node.c">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_base16_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_base32_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_base64_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_byte_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_2.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_3.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_4.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_5.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_6.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_7.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_8.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_9.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_10.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_13.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_14.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_15.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_iso_8859_16.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_koi8_r.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_koi8_u.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_arabic.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_celtic.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_centraleurroman.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_croatian.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_cyrillic.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_dingbats.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_farsi.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_gaelic.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_greek.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_icelandic.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_inuit.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_roman.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_romanian.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_russian.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_symbol.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_thai.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_turkish.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_mac_ukrainian.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_874.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_932.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_936.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_949.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_950.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1250.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1251.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1252.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1253.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1254.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1255.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1256.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1257.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_codepage_windows_1258.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_scsu.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_support.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_unicode_character.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_url_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf7_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf8_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf8_string.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf16_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf16_string.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf32_stream.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libuna\libuna_utf32_string.c">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -948,6 +1170,249 @@
     </ClInclude>
     <ClInclude Include="include\grub\efi.h">
       <Filter>include\grub</Filter>
+    </ClInclude>
+    <ClInclude Include="include\libyal_wrap.h">
+      <Filter>include</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_array.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_btree.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_btree_node.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_btree_values_list.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_definitions.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_extern.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_list.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_list_element.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_range_list.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_range_list_value.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_support.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_tree_node.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_types.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcdata\libcdata_unused.h">
+      <Filter>src\grub\lib\libcdata</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_base16_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_base32_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_base64_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_byte_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_2.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_3.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_4.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_5.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_6.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_7.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_8.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_9.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_10.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_13.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_14.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_15.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_iso_8859_16.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_koi8_r.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_koi8_u.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_arabic.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_celtic.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_centraleurroman.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_croatian.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_cyrillic.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_dingbats.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_farsi.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_gaelic.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_greek.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_icelandic.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_inuit.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_roman.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_romanian.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_russian.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_symbol.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_thai.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_turkish.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_mac_ukrainian.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_874.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_932.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_936.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_949.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_950.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1250.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1251.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1252.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1253.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1254.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1255.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1256.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1257.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_codepage_windows_1258.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_definitions.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_extern.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_scsu.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_support.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_types.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_unicode_character.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_unused.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_url_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf7_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf8_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf8_string.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf16_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf16_string.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf32_stream.h">
+      <Filter>src\grub\lib\libuna</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libuna\libuna_utf32_string.h">
+      <Filter>src\grub\lib\libuna</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
