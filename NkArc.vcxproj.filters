@@ -106,6 +106,9 @@
     <Filter Include="src\grub\lib\libfwnt">
       <UniqueIdentifier>{94a92cf2-38cc-491b-b0f7-fc8def77bd9c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libfvalue">
+      <UniqueIdentifier>{ae772e57-50da-4971-bb17-e9b1c3ce098f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -890,6 +893,45 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfwnt\libfwnt_security_identifier.c">
       <Filter>src\grub\lib\libfwnt</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_binary_data.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_data_handle.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_filetime.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_integer.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_split_utf8_string.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_split_utf16_string.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_string.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_table.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_utf8_string.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_utf16_string.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_value.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_value_entry.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libfvalue\libfvalue_value_type.c">
+      <Filter>src\grub\lib\libfvalue</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1788,6 +1830,75 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfwnt\libfwnt_unused.h">
       <Filter>src\grub\lib\libfwnt</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_binary_data.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_codepage.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_data_handle.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_definitions.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_extern.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_filetime.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_integer.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_libcdata.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_libfdatetime.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_libfguid.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_libfwnt.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_libuna.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_split_utf8_string.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_split_utf16_string.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_string.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_table.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_types.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_unused.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_utf8_string.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_utf16_string.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_value.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_value_entry.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libfvalue\libfvalue_value_type.h">
+      <Filter>src\grub\lib\libfvalue</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

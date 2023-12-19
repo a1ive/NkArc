@@ -21,9 +21,17 @@ typedef grub_uint64_t size64_t;
 
 typedef grub_off_t off64_t;
 
-#define _BYTE_STREAM_HOST_IS_ENDIAN_BIG		( *((uint32_t *) "\x01\x02\x03\x04" ) == 0x01020304 )
-#define _BYTE_STREAM_HOST_IS_ENDIAN_LITTLE	( *((uint32_t *) "\x01\x02\x03\x04" ) == 0x04030201 )
-#define _BYTE_STREAM_HOST_IS_ENDIAN_MIDDLE	( *((uint32_t *) "\x01\x02\x03\x04" ) == 0x02010403 )
+typedef char system_character_t;
+
+#ifdef GRUB_CPU_WORDS_BIGENDIAN
+#define _BYTE_STREAM_HOST_IS_ENDIAN_BIG		1
+#define _BYTE_STREAM_HOST_IS_ENDIAN_LITTLE	0
+#define _BYTE_STREAM_HOST_IS_ENDIAN_MIDDLE	0
+#else
+#define _BYTE_STREAM_HOST_IS_ENDIAN_BIG		0
+#define _BYTE_STREAM_HOST_IS_ENDIAN_LITTLE	1
+#define _BYTE_STREAM_HOST_IS_ENDIAN_MIDDLE	0
+#endif
 
 #define _BYTE_STREAM_ENDIAN_BIG			(uint8_t) 'b'
 #define _BYTE_STREAM_ENDIAN_LITTLE		(uint8_t) 'l'
@@ -231,6 +239,9 @@ typedef grub_off_t off64_t;
 #define INT_MAX GRUB_INT_MAX
 #define INT32_MAX GRUB_INT32_MAX
 #define INT64_MAX 9223372036854775807LL
+#define UINT8_MAX 255
+#define UINT16_MAX 65535
+#define UINT32_MAX 4294967295U
 
 #define libcerror_error_set(...)
 #define libcerror_error_free(x)
@@ -243,6 +254,8 @@ typedef grub_off_t off64_t;
 #define memory_reallocate(x, y) grub_realloc(x, y)
 
 #define memory_copy(x, y, z) grub_memcpy(x, y, z)
+
+#define memory_compare(x, y, z) grub_memcmp(x, y, z)
 
 #define memory_set(x, y, z) grub_memset(x, y, z)
 
@@ -263,3 +276,9 @@ typedef grub_off_t off64_t;
 
 #define narrow_string_reallocate( string, size ) \
 	(char *) memory_reallocate( string, ( sizeof( char ) * ( size ) ) )
+
+#define narrow_string_compare( string1, string2, size ) \
+	grub_memcmp( (void *) string1, (void *) string2, size )
+
+#define system_string_allocate( size ) \
+	(system_character_t *) memory_allocate( sizeof( system_character_t ) * ( size ) )
