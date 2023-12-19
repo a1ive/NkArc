@@ -109,6 +109,9 @@
     <Filter Include="src\grub\lib\libfvalue">
       <UniqueIdentifier>{ae772e57-50da-4971-bb17-e9b1c3ce098f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libcfile">
+      <UniqueIdentifier>{09b7d6f5-5751-43e8-88f7-8a0e4eb4a524}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -932,6 +935,12 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libfvalue\libfvalue_value_type.c">
       <Filter>src\grub\lib\libfvalue</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcfile\libcfile_file.c">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcfile\libcfile_system_string.c">
+      <Filter>src\grub\lib\libcfile</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1899,6 +1908,27 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libfvalue\libfvalue_value_type.h">
       <Filter>src\grub\lib\libfvalue</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_definitions.h">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_extern.h">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_file.h">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_libuna.h">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_system_string.h">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_types.h">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_unused.h">
+      <Filter>src\grub\lib\libcfile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

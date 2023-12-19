@@ -73,6 +73,8 @@ enum grub_file_type
 
 	GRUB_FILE_TYPE_EFI_CHAINLOADED_IMAGE,
 
+	GRUB_FILE_TYPE_LIBYAL,
+
 	/* File holding signature.  */
 	GRUB_FILE_TYPE_SIGNATURE,
 	/* File holding public key to verify signature once.  */

@@ -329,6 +329,8 @@
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list_value.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_tree_node.c" />
+    <ClCompile Include="grub\lib\libcfile\libcfile_file.c" />
+    <ClCompile Include="grub\lib\libcfile\libcfile_system_string.c" />
     <ClCompile Include="grub\lib\libcsplit\libcsplit_narrow_split_string.c" />
     <ClCompile Include="grub\lib\libcsplit\libcsplit_narrow_string.c" />
     <ClCompile Include="grub\lib\libcsplit\libcsplit_wide_split_string.c" />
@@ -552,6 +554,13 @@
     <ClInclude Include="grub\lib\libcdata\libcdata_tree_node.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_types.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_unused.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_definitions.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_extern.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_file.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_libuna.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_system_string.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_types.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_unused.h" />
     <ClInclude Include="grub\lib\libcsplit\libcsplit_definitions.h" />
     <ClInclude Include="grub\lib\libcsplit\libcsplit_extern.h" />
     <ClInclude Include="grub\lib\libcsplit\libcsplit_narrow_split_string.h" />

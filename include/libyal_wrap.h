@@ -277,8 +277,99 @@ typedef char system_character_t;
 #define narrow_string_reallocate( string, size ) \
 	(char *) memory_reallocate( string, ( sizeof( char ) * ( size ) ) )
 
+#define narrow_string_length( string ) \
+	grub_strlen( string )
+
 #define narrow_string_compare( string1, string2, size ) \
-	grub_memcmp( (void *) string1, (void *) string2, size )
+	grub_strncmp( (void *) string1, (void *) string2, size )
+
+#define narrow_string_compare_no_case( string1, string2, size ) \
+	grub_strncasecmp( string1, string2, size )
+
+#define narrow_string_copy( destination, source, size ) \
+	grub_strncpy( destination, source, size )
+
+#define narrow_string_search_character( string, character, size ) \
+	grub_strchr( string, (int) character )
+
+#define narrow_string_search_character_reverse( string, character, size ) \
+	grub_strrchr( string, (int) character )
+
+#define narrow_string_search_string( string, substring, size ) \
+	grub_strstr( string, substring )
+
+#if defined( HAVE_WIDE_SYSTEM_CHARACTER )
+
+#if SIZEOF_WCHAR_T != 2
+#error Unsupported wide system character size
+#endif
+
+/* Intermediate version of the macro required
+ * for correct evaluation predefined string
+ */
+#define _SYSTEM_STRING_INTERMEDIATE( string ) \
+	L ## string
+
+#define _SYSTEM_STRING( string ) \
+	_SYSTEM_STRING_INTERMEDIATE( string )
 
 #define system_string_allocate( size ) \
-	(system_character_t *) memory_allocate( sizeof( system_character_t ) * ( size ) )
+	wide_string_allocate( size )
+
+#define system_string_reallocate( string, size ) \
+	wide_string_reallocate( string, size )
+
+#define system_string_compare( destination, source, size ) \
+	wide_string_compare( destination, source, size )
+
+#define system_string_compare_no_case( destination, source, size ) \
+	wide_string_compare_no_case( destination, source, size )
+
+#define system_string_copy( destination, source, size ) \
+	wide_string_copy( destination, source, size )
+
+#define system_string_length( string ) \
+	wide_string_length( string )
+
+#define system_string_search_character( string, character, size ) \
+	wide_string_search_character( string, character, size )
+
+#define system_string_search_character_reverse( string, character, size ) \
+	wide_string_search_character_reverse( string, character, size )
+
+#define system_string_search_string( string, substring, size ) \
+	wide_string_search_string( string, substring, size )
+
+#else
+
+#define _SYSTEM_STRING( string ) \
+	string
+
+#define system_string_allocate( size ) \
+	narrow_string_allocate( size )
+
+#define system_string_reallocate( string, size ) \
+	narrow_string_reallocate( string, size )
+
+#define system_string_compare( destination, source, size ) \
+	narrow_string_compare( destination, source, size )
+
+#define system_string_compare_no_case( destination, source, size ) \
+	narrow_string_compare_no_case( destination, source, size )
+
+#define system_string_copy( destination, source, size ) \
+	narrow_string_copy( destination, source, size )
+
+#define system_string_length( string ) \
+	narrow_string_length( string )
+
+#define system_string_search_character( string, character, size ) \
+	narrow_string_search_character( string, character, size )
+
+#define system_string_search_character_reverse( string, character, size ) \
+	narrow_string_search_character_reverse( string, character, size )
+
+#define system_string_search_string( string, substring, size ) \
+	narrow_string_search_string( string, substring, size )
+
+#endif /* defined( HAVE_WIDE_SYSTEM_CHARACTER ) */
