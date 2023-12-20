@@ -330,6 +330,7 @@
     <ClCompile Include="grub\lib\libcdata\libcdata_range_list_value.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_tree_node.c" />
     <ClCompile Include="grub\lib\libcfile\libcfile_file.c" />
+    <ClCompile Include="grub\lib\libcfile\libcfile_support.c" />
     <ClCompile Include="grub\lib\libcfile\libcfile_system_string.c" />
     <ClCompile Include="grub\lib\libcpath\libcpath_path.c" />
     <ClCompile Include="grub\lib\libcpath\libcpath_system_string.c" />
@@ -560,6 +561,7 @@
     <ClInclude Include="grub\lib\libcfile\libcfile_extern.h" />
     <ClInclude Include="grub\lib\libcfile\libcfile_file.h" />
     <ClInclude Include="grub\lib\libcfile\libcfile_libuna.h" />
+    <ClInclude Include="grub\lib\libcfile\libcfile_support.h" />
     <ClInclude Include="grub\lib\libcfile\libcfile_system_string.h" />
     <ClInclude Include="grub\lib\libcfile\libcfile_types.h" />
     <ClInclude Include="grub\lib\libcfile\libcfile_unused.h" />

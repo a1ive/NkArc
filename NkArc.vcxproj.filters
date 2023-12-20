@@ -951,6 +951,9 @@
     <ClCompile Include="grub\lib\libcpath\libcpath_system_string.c">
       <Filter>src\grub\lib\libcpath</Filter>
     </ClCompile>
+    <ClCompile Include="grub\lib\libcfile\libcfile_support.c">
+      <Filter>src\grub\lib\libcfile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nuklear.rc">
@@ -1959,6 +1962,9 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libcpath\libcpath_unused.h">
       <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcfile\libcfile_support.h">
+      <Filter>src\grub\lib\libcfile</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
