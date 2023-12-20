@@ -112,6 +112,9 @@
     <Filter Include="src\grub\lib\libcfile">
       <UniqueIdentifier>{09b7d6f5-5751-43e8-88f7-8a0e4eb4a524}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libcpath">
+      <UniqueIdentifier>{0616f280-7024-484b-8291-28e59a034a0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -941,6 +944,12 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libcfile\libcfile_system_string.c">
       <Filter>src\grub\lib\libcfile</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcpath\libcpath_path.c">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcpath\libcpath_system_string.c">
+      <Filter>src\grub\lib\libcpath</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1929,6 +1938,27 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libcfile\libcfile_unused.h">
       <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_definitions.h">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_extern.h">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_libcsplit.h">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_libuna.h">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_path.h">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_system_string.h">
+      <Filter>src\grub\lib\libcpath</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcpath\libcpath_unused.h">
+      <Filter>src\grub\lib\libcpath</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
