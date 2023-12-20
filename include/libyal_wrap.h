@@ -19,7 +19,7 @@ typedef grub_ssize_t ssize_t;
 typedef grub_size_t size_t;
 typedef grub_uint64_t size64_t;
 
-typedef grub_off_t off64_t;
+typedef grub_int64_t off64_t;
 
 typedef char system_character_t;
 

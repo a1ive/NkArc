@@ -115,6 +115,9 @@
     <Filter Include="src\grub\lib\libcpath">
       <UniqueIdentifier>{0616f280-7024-484b-8291-28e59a034a0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libbfio">
+      <UniqueIdentifier>{bccc8d1c-1a2c-44bb-aad0-96f09d12f729}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -953,6 +956,36 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libcfile\libcfile_support.c">
       <Filter>src\grub\lib\libcfile</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_file.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_file_io_handle.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_file_pool.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_file_range.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_file_range_io_handle.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_handle.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_memory_range.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_memory_range_io_handle.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_pool.c">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libbfio\libbfio_system_string.c">
+      <Filter>src\grub\lib\libbfio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1965,6 +1998,63 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libcfile\libcfile_support.h">
       <Filter>src\grub\lib\libcfile</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_codepage.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_definitions.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_extern.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_file.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_file_io_handle.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_file_pool.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_file_range.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_file_range_io_handle.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_handle.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_libcdata.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_libcfile.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_libcpath.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_libuna.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_memory_range.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_memory_range_io_handle.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_pool.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_system_string.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_types.h">
+      <Filter>src\grub\lib\libbfio</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libbfio\libbfio_unused.h">
+      <Filter>src\grub\lib\libbfio</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
