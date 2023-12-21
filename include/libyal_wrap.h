@@ -237,15 +237,20 @@ typedef char system_character_t;
 
 #define SSIZE_MAX GRUB_SSIZE_MAX
 #define INT_MAX GRUB_INT_MAX
+#define INT16_MAX 32767
 #define INT32_MAX GRUB_INT32_MAX
 #define INT64_MAX 9223372036854775807LL
 #define UINT8_MAX 255
 #define UINT16_MAX 65535
 #define UINT32_MAX 4294967295U
+#define ULONG_MAX GRUB_ULONG_MAX
 
 #define libcerror_error_set(...)
 #define libcerror_error_free(x)
 #define libcerror_error_t int
+
+#define MEMORY_MAXIMUM_ALLOCATION_SIZE \
+	( 128 * 1024 * 1024 )
 
 #define memory_allocate(x) grub_malloc(x)
 
