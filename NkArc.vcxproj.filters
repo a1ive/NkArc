@@ -121,6 +121,9 @@
     <Filter Include="src\grub\lib\libvmdk">
       <UniqueIdentifier>{a584da86-8dfc-4180-8c0b-2c51f0a02dce}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libcaes">
+      <UniqueIdentifier>{686cdd87-9e5e-4d5f-8cf5-9f67eac64391}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -1037,6 +1040,12 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libvmdk\libvmdk_system_string.c">
       <Filter>src\grub\lib\libvmdk</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcaes\libcaes_context.c">
+      <Filter>src\grub\lib\libcaes</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libcaes\libcaes_tweaked_context.c">
+      <Filter>src\grub\lib\libcaes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2199,6 +2208,24 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libvmdk\vmdk_sparse_file_header.h">
       <Filter>src\grub\lib\libvmdk</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcaes\libcaes_context.h">
+      <Filter>src\grub\lib\libcaes</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcaes\libcaes_definitions.h">
+      <Filter>src\grub\lib\libcaes</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcaes\libcaes_extern.h">
+      <Filter>src\grub\lib\libcaes</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcaes\libcaes_tweaked_context.h">
+      <Filter>src\grub\lib\libcaes</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcaes\libcaes_types.h">
+      <Filter>src\grub\lib\libcaes</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libcaes\libcaes_unused.h">
+      <Filter>src\grub\lib\libcaes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

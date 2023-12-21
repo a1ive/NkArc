@@ -330,6 +330,8 @@
     <ClCompile Include="grub\lib\libbfio\libbfio_memory_range_io_handle.c" />
     <ClCompile Include="grub\lib\libbfio\libbfio_pool.c" />
     <ClCompile Include="grub\lib\libbfio\libbfio_system_string.c" />
+    <ClCompile Include="grub\lib\libcaes\libcaes_context.c" />
+    <ClCompile Include="grub\lib\libcaes\libcaes_tweaked_context.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_array.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_btree.c" />
     <ClCompile Include="grub\lib\libcdata\libcdata_btree_node.c" />
@@ -589,6 +591,12 @@
     <ClInclude Include="grub\lib\libbfio\libbfio_system_string.h" />
     <ClInclude Include="grub\lib\libbfio\libbfio_types.h" />
     <ClInclude Include="grub\lib\libbfio\libbfio_unused.h" />
+    <ClInclude Include="grub\lib\libcaes\libcaes_context.h" />
+    <ClInclude Include="grub\lib\libcaes\libcaes_definitions.h" />
+    <ClInclude Include="grub\lib\libcaes\libcaes_extern.h" />
+    <ClInclude Include="grub\lib\libcaes\libcaes_tweaked_context.h" />
+    <ClInclude Include="grub\lib\libcaes\libcaes_types.h" />
+    <ClInclude Include="grub\lib\libcaes\libcaes_unused.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_array.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_btree.h" />
     <ClInclude Include="grub\lib\libcdata\libcdata_btree_node.h" />
