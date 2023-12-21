@@ -124,6 +124,9 @@
     <Filter Include="src\grub\lib\libcaes">
       <UniqueIdentifier>{686cdd87-9e5e-4d5f-8cf5-9f67eac64391}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\grub\lib\libhmac">
+      <UniqueIdentifier>{a2a3373f-5d1b-41ab-8804-5b2b46cc43cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c">
@@ -1046,6 +1049,36 @@
     </ClCompile>
     <ClCompile Include="grub\lib\libcaes\libcaes_tweaked_context.c">
       <Filter>src\grub\lib\libcaes</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_md5.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_md5_context.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha1.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha1_context.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha224.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha224_context.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha256.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha256_context.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha512.c">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClCompile>
+    <ClCompile Include="grub\lib\libhmac\libhmac_sha512_context.c">
+      <Filter>src\grub\lib\libhmac</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -2226,6 +2259,51 @@
     </ClInclude>
     <ClInclude Include="grub\lib\libcaes\libcaes_unused.h">
       <Filter>src\grub\lib\libcaes</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_byte_stream.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_definitions.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_extern.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_md5.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_md5_context.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha1.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha1_context.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha224.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha224_context.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha256.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha256_context.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha512.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_sha512_context.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_types.h">
+      <Filter>src\grub\lib\libhmac</Filter>
+    </ClInclude>
+    <ClInclude Include="grub\lib\libhmac\libhmac_unused.h">
+      <Filter>src\grub\lib\libhmac</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
